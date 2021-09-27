@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+$main-theme-color: rgb(121, 82, 179);
+
+body {
+    background: $main-theme-color;
+    overflow-x: hidden;
+}
