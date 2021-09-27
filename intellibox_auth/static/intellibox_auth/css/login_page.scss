@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+
+$main-theme-color: rgb(121, 82, 179);
+
+body {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+}
+
+a#reset-a {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+}
+
+a#github-a {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+
+    i {
+        transition: all 0.3s ease;
+        font-size: 3rem;
+        color: white;
+        background: $main-theme-color;
+        border-radius: 5px;
+        box-shadow: rgb(76, 38, 133) 5px 5px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+h2 {
+    font-family: 'Righteous', cursive;
+    color: white;
+    font-size: 4rem;
+    text-shadow: rgb(76, 38, 133) 5px 5px;
+    animation: fade-in 3s ease;
+
+    img {
+        width: 12rem;
+        margin: -2rem;
+    }
+}
+
+div#forms {
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+
+    form#login-form {
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        &.hidden {
+            transform: translateX(-150%);
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    form#register-form {
+        &.hidden {
+            transform: translateX(150%);
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    form {
+        transition: all .5s ease;
+        margin: 2rem 5rem 5rem 5rem;
+        width: 20rem;
+
+        h3, label {
+            color: white;
+        }
+
+        input {
+            margin-bottom: 1rem;
+            box-shadow: rgb(76, 38, 133) 5px 5px;
+            background: rgb(213, 186, 255);
+            color: white;
+        }
+
+        button {
+            width: 10rem;
+            display: block;
+            margin: auto;
+            box-shadow: rgb(76, 38, 133) 5px 5px;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    html {
+        font-size: 70%;
+    }
+}

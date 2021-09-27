@@ -1,12 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Maven Pro', sans-serif;
 }
 
 $main-theme-color: rgb(121, 82, 179);
+$main-theme-color-2: rgb(73, 18, 156);
 
 body {
     background: $main-theme-color;
     overflow-x: hidden;
 }
+
+.btn-primary {
+    background: rgb(95, 32, 190);
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: rgb(76, 38, 133) 5px 5px;
+
+    &:hover {
+        background: rgb(126, 56, 231);
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    html {
+        font-size: 70%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 40%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 30%;
+    }
+}
+

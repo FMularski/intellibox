@@ -1,1 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Intellibox | Login Page {% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static '/intellibox_auth/css/login_page.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <h2><img src="{% static '/img/box.gif' %}" alt=""> intellibox</h2>
+        <div id="forms">
+            <form action="" id="login-form">
+                <h3><b><i class="fas fa-sign-in-alt"></i> Log In</b></h3>
+                <label for="">Username</label>
+                <input type="text" class="form-control">
+                <label for="">Password</label>
+                <input type="text" class="form-control">
+                <button type="submit" class="btn btn-primary">Log In</button>
+                <button id="no-account-btn" type="submit" class="btn btn-primary">No account?</button>
+                
+            </form>
+            <form action="" id="register-form" class="hidden">
+                <h3><b><i class="fas fa-user-plus"></i> Register</b></h3>
+                <label for="">Username</label>
+                <input type="text" class="form-control">
+                <label for="">Email</label>
+                <input type="text" class="form-control">
+                <label for="">Password</label>
+                <input type="text" class="form-control">
+                <label for="">Confirm password</label>
+                <input type="text" class="form-control">
+                <label for="">PIN code</label>
+                <input type="text" class="form-control">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button id="already-user-btn" type="submit" class="btn btn-primary">Already an user?</button>
+            </form>
+        </div>
+        <a href="#" id="reset-a" class="btn btn-primary"><i class="fas fa-key"></i> Forgot password?</a>
+        <a id="github-a" target="_blank" href="https://github.com/FMularski/intellibox"><i class="fab fa-github-square"></i></a>
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/intellibox_auth/js/form-swap.js' %}"></script>
+{% endblock %}

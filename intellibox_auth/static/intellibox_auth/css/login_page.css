@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+body {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+a#reset-a {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+}
+
+a#github-a {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+}
+
+a#github-a i {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  font-size: 3rem;
+  color: white;
+  background: #7952b3;
+  border-radius: 5px;
+  -webkit-box-shadow: #4c2685 5px 5px;
+          box-shadow: #4c2685 5px 5px;
+}
+
+a#github-a i:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+h2 {
+  font-family: 'Righteous', cursive;
+  color: white;
+  font-size: 4rem;
+  text-shadow: #4c2685 5px 5px;
+  -webkit-animation: fade-in 3s ease;
+          animation: fade-in 3s ease;
+}
+
+h2 img {
+  width: 12rem;
+  margin: -2rem;
+}
+
+div#forms {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+}
+
+div#forms form#login-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+div#forms form#login-form.hidden {
+  -webkit-transform: translateX(-150%);
+          transform: translateX(-150%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+div#forms form#register-form.hidden {
+  -webkit-transform: translateX(150%);
+          transform: translateX(150%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+div#forms form {
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  margin: 2rem 5rem 5rem 5rem;
+  width: 20rem;
+}
+
+div#forms form h3, div#forms form label {
+  color: white;
+}
+
+div#forms form input {
+  margin-bottom: 1rem;
+  -webkit-box-shadow: #4c2685 5px 5px;
+          box-shadow: #4c2685 5px 5px;
+  background: #d5baff;
+  color: white;
+}
+
+div#forms form button {
+  width: 10rem;
+  display: block;
+  margin: auto;
+  -webkit-box-shadow: #4c2685 5px 5px;
+          box-shadow: #4c2685 5px 5px;
+  margin-bottom: 1rem;
+}
+
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 70%;
+  }
+}
+/*# sourceMappingURL=login_page.css.map */
