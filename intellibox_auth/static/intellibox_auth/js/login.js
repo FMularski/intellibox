@@ -10,6 +10,7 @@
         event.preventDefault();
 
         loginBtn.innerHTML = '<i class="fas fa-spinner"></i>';
+        loginBtn.style.pointerEvents = 'none';
 
         $.ajax({
             url: '/login/',
@@ -40,6 +41,7 @@
 
                     document.querySelector('main').append(flashMsg);
                     loginBtn.innerHTML = 'Log In';
+                    loginBtn.style.pointerEvents = 'all';
 
                     usernameInput.value = '';
                     passwordInput.value = '';

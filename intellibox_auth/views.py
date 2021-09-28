@@ -1,7 +1,10 @@
 from django.views.generic import View, TemplateView
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.conf import settings
 from .forms import RegisterForm
+from smtplib import SMTPException
 
 
 class LoginPageView(TemplateView):
@@ -18,9 +21,37 @@ class RegisterView(View):
         form = RegisterForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password1')
+            pin = form.cleaned_data.get('pin')
+
             form.save()
-            # send a welcome mail
-            return JsonResponse({'status': 200, 'message': f'User \'{username}\' has been registered.'})
+
+            message_extension = ''
+            try:
+                send_mail(
+                    subject='Welcome to Intellibox!',
+                    message=f'''
+                    Thank you for your register!
+
+                    Here is your account data:
+                    username: {username}
+                    email: {email}
+                    password: {password}
+                    PIN: {pin}
+
+                    Have fun with our app!
+                    Intellibox team
+                    ''',
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[email],
+                    fail_silently=False
+                )
+            except SMTPException:
+                message_extension = '\nCould not send a welcome message.'
+
+
+            return JsonResponse({'status': 200, 'message': f'User \'{username}\' has been registered.{message_extension}'})
         else:
             return JsonResponse({'status': '400', 'message': form.errors})
 

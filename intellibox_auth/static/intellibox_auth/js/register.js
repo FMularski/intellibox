@@ -14,6 +14,7 @@
         event.preventDefault();
 
         registerBtn.innerHTML = '<i class="fas fa-spinner"></i>';
+        registerBtn.style.pointerEvents = 'none';
         
         $.ajax({
             url: '/register/',
@@ -29,6 +30,8 @@
             },
             success: response => {
                 registerBtn.innerHTML = 'Register';
+                registerBtn.style.pointerEvents = 'all';
+
                 let flashMsgText = '';
                 let flashMsg = document.createElement('div');
                 flashMsg.setAttribute('id', 'flash-msg');
@@ -63,6 +66,9 @@
                 })
 
                 document.querySelector('main').append(flashMsg);
+
+                document.querySelector('#username-login').value = usernameInput.value;
+                document.querySelector('#password-login').focus();
 
                 usernameInput.value = '';
                 emailInput.value = '';
