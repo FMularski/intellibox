@@ -152,7 +152,7 @@ div#forms form button {
   margin-bottom: 1rem;
 }
 
-div#forms form button#register-btn i {
+div#forms form button#register-btn i, div#forms form button#login-btn i {
   -webkit-animation: spinning .75s ease infinite;
           animation: spinning .75s ease infinite;
 }

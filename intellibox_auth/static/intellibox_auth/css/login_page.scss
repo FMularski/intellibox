@@ -128,7 +128,7 @@ div#forms {
             box-shadow: rgb(76, 38, 133) 5px 5px;
             margin-bottom: 1rem;
 
-            &#register-btn {
+            &#register-btn, &#login-btn {
                 i {
                     animation: spinning .75s ease infinite;
                 }

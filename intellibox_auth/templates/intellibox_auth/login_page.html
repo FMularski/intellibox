@@ -12,17 +12,17 @@
         <h2><img src="{% static '/img/box.gif' %}" alt=""> intellibox</h2>
         <div id="forms">
             {% csrf_token %}
-            <form action="" id="login-form">
+            <form id="login-form">
                 {% csrf_token %}
                 <h3><b><i class="fas fa-sign-in-alt"></i> Log In</b></h3>
                 <label for="">Username</label>
-                <input type="text" class="form-control">
+                <input id="username-login" name="username-login" type="text" class="form-control" required>
                 <label for="">Password</label>
-                <input type="text" class="form-control">
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <input id="password-login" name="password-login" type="password" class="form-control" required>
+                <button id="login-btn" type="submit" class="btn btn-primary">Log In</button>
                 <button id="no-account-btn" type="submit" class="btn btn-primary">No account?</button>
             </form>
-            <form action="" id="register-form" class="hidden">
+            <form id="register-form" class="hidden">
                 <h3><b><i class="fas fa-user-plus"></i> Register</b></h3>
                 {{register_form.username.label}}
                 {{register_form.username}}
@@ -46,4 +46,5 @@
 {% block script %}
     <script src="{% static '/intellibox_auth/js/form-swap.js' %}"></script>
     <script src="{% static '/intellibox_auth/js/register.js' %}"></script>
+    <script src="{% static '/intellibox_auth/js/login.js' %}"></script>
 {% endblock %}

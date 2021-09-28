@@ -1,4 +1,5 @@
 from django.views.generic import View, TemplateView
+from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from .forms import RegisterForm
 
@@ -23,3 +24,20 @@ class RegisterView(View):
         else:
             return JsonResponse({'status': '400', 'message': form.errors})
 
+
+class LoginView(View):
+    def post(self, request):
+        username = request.POST.get('username-login')
+        password = request.POST.get('password-login')
+
+        user = authenticate(request, username=username, password=password)
+
+        if not user:
+            return JsonResponse({'status': 400, 'message': 'Invalid credentials.'})
+
+        login(request, user)
+        return JsonResponse({'status': 200})
+
+
+class TestLoginView(TemplateView):
+    template_name = 'intellibox_auth/test_login.html'
