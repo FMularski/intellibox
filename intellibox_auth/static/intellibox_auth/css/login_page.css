@@ -104,9 +104,6 @@ div#forms form {
   transition: all .5s ease;
   margin: 2rem 5rem 5rem 5rem;
   width: 20rem;
-}
-
-div#forms form h3, div#forms form label {
   color: white;
 }
 

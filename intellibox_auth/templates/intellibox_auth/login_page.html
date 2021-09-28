@@ -11,7 +11,9 @@
     <main>
         <h2><img src="{% static '/img/box.gif' %}" alt=""> intellibox</h2>
         <div id="forms">
+            {% csrf_token %}
             <form action="" id="login-form">
+                {% csrf_token %}
                 <h3><b><i class="fas fa-sign-in-alt"></i> Log In</b></h3>
                 <label for="">Username</label>
                 <input type="text" class="form-control">
@@ -19,20 +21,19 @@
                 <input type="text" class="form-control">
                 <button type="submit" class="btn btn-primary">Log In</button>
                 <button id="no-account-btn" type="submit" class="btn btn-primary">No account?</button>
-                
             </form>
             <form action="" id="register-form" class="hidden">
                 <h3><b><i class="fas fa-user-plus"></i> Register</b></h3>
-                <label for="">Username</label>
-                <input type="text" class="form-control">
-                <label for="">Email</label>
-                <input type="text" class="form-control">
-                <label for="">Password</label>
-                <input type="text" class="form-control">
-                <label for="">Confirm password</label>
-                <input type="text" class="form-control">
-                <label for="">PIN code</label>
-                <input type="text" class="form-control">
+                {{register_form.username.label}}
+                {{register_form.username}}
+                {{register_form.email.label}}
+                {{register_form.email}}
+                {{register_form.password1.label}}
+                {{register_form.password1}}
+                {{register_form.password2.label}}
+                {{register_form.password2}}
+                <label for="">PIN</label>
+                {{register_form.pin}}
                 <button type="submit" class="btn btn-primary">Register</button>
                 <button id="already-user-btn" type="submit" class="btn btn-primary">Already an user?</button>
             </form>
@@ -44,4 +45,5 @@
 
 {% block script %}
     <script src="{% static '/intellibox_auth/js/form-swap.js' %}"></script>
+    <script src="{% static '/intellibox_auth/js/register.js' %}"></script>
 {% endblock %}
