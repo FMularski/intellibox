@@ -6,6 +6,7 @@ $main-theme-color: rgb(121, 82, 179);
 body {
     height: 100vh;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 main {
@@ -15,6 +16,29 @@ main {
     flex-direction: column;
     height: 100vh;
     position: relative;
+}
+
+div#flash-msg {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    width: 20rem;
+    border-radius: 10px;
+    color: white;
+    padding: 1rem 2rem 1rem 2rem;
+    transition: all 0.5s ease;
+    animation: flash-msg-intro .5s ease;
+
+    &.success {
+        background: rgb(0, 201, 0);
+        box-shadow: rgb(0, 151, 0) .5rem .5rem;
+    }
+
+    &.error {
+        background: red;
+        box-shadow: rgb(148, 0, 0) .5rem .5rem;
+    }
+
 }
 
 a#reset-a {
@@ -103,6 +127,12 @@ div#forms {
             margin: auto;
             box-shadow: rgb(76, 38, 133) 5px 5px;
             margin-bottom: 1rem;
+
+            &#register-btn {
+                i {
+                    animation: spinning .75s ease infinite;
+                }
+            }
         }
     }
 }
@@ -112,6 +142,30 @@ div#forms {
         opacity: 0;
     } to {
         opacity: 1;
+    }
+}
+
+@keyframes flash-msg-intro {
+    from {
+        right: -30%;
+    } to {
+        right: 3rem;
+    }
+}
+
+@keyframes flash-msg-outro {
+    from {
+        right: 3rem;
+    } to {
+        right: -30%;
+    }
+}
+
+@keyframes spinning {
+    from {
+        transform: rotateZ(0deg);
+    } to {
+        transform: rotateZ(360deg);
     }
 }
 

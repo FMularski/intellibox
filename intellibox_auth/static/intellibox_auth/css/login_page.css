@@ -2,6 +2,7 @@
 body {
   height: 100vh;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 main {
@@ -20,6 +21,32 @@ main {
           flex-direction: column;
   height: 100vh;
   position: relative;
+}
+
+div#flash-msg {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  width: 20rem;
+  border-radius: 10px;
+  color: white;
+  padding: 1rem 2rem 1rem 2rem;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-animation: flash-msg-intro .5s ease;
+          animation: flash-msg-intro .5s ease;
+}
+
+div#flash-msg.success {
+  background: #00c900;
+  -webkit-box-shadow: #009700 0.5rem 0.5rem;
+          box-shadow: #009700 0.5rem 0.5rem;
+}
+
+div#flash-msg.error {
+  background: red;
+  -webkit-box-shadow: #940000 0.5rem 0.5rem;
+          box-shadow: #940000 0.5rem 0.5rem;
 }
 
 a#reset-a {
@@ -125,6 +152,11 @@ div#forms form button {
   margin-bottom: 1rem;
 }
 
+div#forms form button#register-btn i {
+  -webkit-animation: spinning .75s ease infinite;
+          animation: spinning .75s ease infinite;
+}
+
 @-webkit-keyframes fade-in {
   from {
     opacity: 0;
@@ -140,6 +172,64 @@ div#forms form button {
   }
   to {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes flash-msg-intro {
+  from {
+    right: -30%;
+  }
+  to {
+    right: 3rem;
+  }
+}
+
+@keyframes flash-msg-intro {
+  from {
+    right: -30%;
+  }
+  to {
+    right: 3rem;
+  }
+}
+
+@-webkit-keyframes flash-msg-outro {
+  from {
+    right: 3rem;
+  }
+  to {
+    right: -30%;
+  }
+}
+
+@keyframes flash-msg-outro {
+  from {
+    right: 3rem;
+  }
+  to {
+    right: -30%;
+  }
+}
+
+@-webkit-keyframes spinning {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spinning {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
   }
 }
 
