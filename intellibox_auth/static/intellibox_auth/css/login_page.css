@@ -116,6 +116,7 @@ div#forms form input {
           box-shadow: #4c2685 5px 5px;
   background: #d5baff;
   color: white;
+  text-align: center;
 }
 
 div#forms form button {

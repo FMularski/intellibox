@@ -22,7 +22,7 @@ body {
     transition: all 0.3s ease;
     box-shadow: rgb(76, 38, 133) 5px 5px;
 
-    &:hover {
+    &:hover, &:focus {
         background: rgb(126, 56, 231);
     }
 }

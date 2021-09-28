@@ -22,7 +22,7 @@ body {
           box-shadow: #4c2685 5px 5px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
   background: #7e38e7;
 }
 
