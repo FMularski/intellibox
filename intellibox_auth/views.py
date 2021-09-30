@@ -1,8 +1,9 @@
 from django.views.generic import View, TemplateView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from django.shortcuts import redirect, reverse
 from .forms import RegisterForm
 from smtplib import SMTPException
 
@@ -69,6 +70,11 @@ class LoginView(View):
         login(request, user)
         return JsonResponse({'status': 200})
 
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('login_page', ))
 
 class TestLoginView(TemplateView):
     template_name = 'intellibox_auth/test_login.html'

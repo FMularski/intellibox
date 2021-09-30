@@ -6,7 +6,10 @@ class RedirectToLoginMiddleware:
 
     def __call__(self, request):
 
-        if request.user.is_authenticated and request.path in ['/']:
+        if request.path in ['/']:
+            return redirect(reverse('login_page', ))
+
+        if request.user.is_authenticated and request.path in ['/login-page/']:
             return redirect(reverse('boxes', ))
 
         response = self.get_response(request)

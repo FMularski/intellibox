@@ -4,10 +4,10 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.LoginPageView.as_view(), name='login_page'),
+    path('login-page/', views.LoginPageView.as_view(), name='login_page'),
     path('register/', views.RegisterView.as_view(), name='register'),
     path('login/', views.LoginView.as_view(), name='login'),
-    path('test-login/', views.TestLoginView.as_view(), name='test_login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
 
     path('password_reset/', 
         auth_views.PasswordResetView.as_view(template_name='intellibox_auth/password_reset.html'), 

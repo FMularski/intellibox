@@ -48,7 +48,7 @@
 
 
                 } else if (response.status == 200) {
-                    location.href = '/test-login/'
+                    location.href = '/boxes/'
                 }
             }
         })
