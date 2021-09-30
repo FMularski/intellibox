@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('intellibox_auth.urls'))
+    path('', include('intellibox_auth.urls')),
+    path('boxes/', include('boxes.urls'))
 ]
