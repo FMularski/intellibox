@@ -50,10 +50,90 @@ header {
     }
 }
 
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+div#main-panel {
+    background: white;
+    padding: 3rem;
+    flex: 1;
+    margin-left: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+    min-height: 70vh;
+
+    h2 {
+        color: rgb(167, 167, 167);
+    }
+
+    div#search-sort-panels {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+        input, select { 
+            width: 20rem;
+            background: rgb(213, 186, 255);
+            color: white;
+            text-align: center;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    table {
+        width: 100%;
+        margin-top: 1rem;
+
+        tr {
+            height: 3rem;
+            border-bottom: 1px solid gray;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+
+            i {
+                margin-left: 2rem;
+            }
+
+            &:hover {
+                background: rgb(233, 233, 233);
+                cursor: pointer;
+            }
+
+            &.active-box-item {
+                background: cornflowerblue;
+                color: white;
+            }
+        }
+    }
+}
+
 @keyframes spinning {
     from {
         transform: rotateZ(0deg);
     } to {
         transform: rotateZ(360deg);
+    }
+}
+
+@media screen and (max-width:1000px) {
+    html {
+        font-size: 70%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    div#main-panel {
+        width: 100%;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        margin: 0;
     }
 }

@@ -6,6 +6,7 @@
 {% block link %}
     <link rel="stylesheet" href="{% static '/boxes/css/boxes.css' %}">
     <link rel="stylesheet" href="{% static '/boxes/css/nav.css' %}">
+    <link rel="stylesheet" href="{% static '/boxes/css/context-menu.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -20,29 +21,89 @@
             <i id="logout-btn" class="fas fa-power-off"></i>
         </div>
     </header>
-    <nav>
-        <p class="new-btn"><i class="fas fa-plus"></i> New</p>
-        <hr>
-        <p class="nav-item active-nav-item"><i class="fas fa-box-open"></i> My box</p>
-        <p class="nav-item"><i class="fas fa-star"></i> Favourites</p>
-        <p class="nav-item"><i class="fas fa-clock"></i> Recent</p>
-        <p class="nav-item"><i class="fas fa-trash-alt"></i> Bin</p>
-        <hr>
-        <p class="storage-info"><i class="fas fa-cloud"></i> Storage</p>
-        <div class="storage-bar-bg">
-            <div class="storage-bar"></div>
-        </div>
-        <p class="storage-occupied-data"> 
-            <span class="storage-occupied-number">8.65</span> GB of 
-            <span class="storage-limitnumber">15</span> GB used
-        </p>
-    </nav>
     <main>
-
+        <nav>
+            <p class="new-btn"><i class="fas fa-plus"></i> New</p>
+            <hr>
+            <p class="nav-item active-nav-item"><i class="fas fa-box-open"></i> My box</p>
+            <p class="nav-item"><i class="fas fa-star"></i> Favourites</p>
+            <p class="nav-item"><i class="fas fa-clock"></i> Recent</p>
+            <p class="nav-item"><i class="fas fa-trash-alt"></i> Bin</p>
+            <hr>
+            <p class="storage-info"><i class="fas fa-cloud"></i> Storage</p>
+            <div class="storage-bar-bg">
+                <div class="storage-bar"></div>
+            </div>
+            <p class="storage-occupied-data"> 
+                <span class="storage-occupied-number">8.65</span> GB of 
+                <span class="storage-limitnumber">15</span> GB used
+            </p>
+        </nav>
+        <div id="main-panel">
+            <h2 id="current-path">box1/box2/filename</h2>
+            <hr>
+            <div id="search-sort-panels">
+                <div id="search-panel">
+                    Search: <input type="text" class="form-control">
+                </div>
+                <div id="sort-panel">
+                    Sort:
+                    <select name="" id="" class="form-control">
+                        <option value="">Name</option>
+                        <option value="">Size</option>
+                        <option value="">Modified date</option>
+                    </select>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <th></th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Last Modified</th>
+                </thead>
+                <tbody>
+                    <tr class="box-item">
+                        <td><i class="far fa-star"></i></td>
+                        <td><i class="fas fa-archive"></i></td>
+                        <td>some name</td>
+                        <td>7.6 MB</td>
+                        <td>12 jan 2021</td>
+                    </tr>
+                    <tr class="box-item">
+                        <td><i class="far fa-star"></i></td>
+                        <td><i class="fas fa-archive"></i></td>
+                        <td>some name</td>
+                        <td>7.6 MB</td>
+                        <td>12 jan 2021</td>
+                    </tr>
+                    <tr class="box-item">
+                        <td><i class="far fa-star"></i></td>
+                        <td><i class="fas fa-archive"></i></td>
+                        <td>some name</td>
+                        <td>7.6 MB</td>
+                        <td>12 jan 2021</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
+
+    <div id="context-menu">
+        <p class="context-menu-item"><i class="fas fa-search"></i> Preview</p>
+        <p class="context-menu-item"><i class="fas fa-cloud-download-alt"></i> Download</p>
+        <p class="context-menu-item"><i class="fas fa-edit"></i> Rename</p>
+        <p class="context-menu-item"><i class="fas fa-times"></i> Remove</p>
+        <p class="context-menu-item"><i class="fas fa-arrows-alt"></i> Move</p>
+        <p class="context-menu-item"><i class="fas fa-star"></i> Mark as favourite</p>
+        <p class="context-menu-item"><i class="fas fa-link"></i> Get link</p>
+    </div>
 {% endblock %}
 
 {% block script %}
     <script src="{% static '/boxes/js/logout.js' %}"></script>
     <script src="{% static '/boxes/js/nav.js' %}"></script>
+    <script src="{% static '/boxes/js/box-items.js' %}"></script>
+    <script src="{% static '/boxes/js/context-menu.js' %}"></script>
 {% endblock %}

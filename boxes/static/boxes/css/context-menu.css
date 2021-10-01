@@ -1,0 +1,27 @@
+div#context-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  width: 20rem;
+  background: white;
+  border: 1px solid black;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+div#context-menu p.context-menu-item {
+  margin: 0;
+  padding: .5rem;
+  border-bottom: 1px solid black;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+div#context-menu p.context-menu-item:hover {
+  background: #d8d8d8;
+  cursor: pointer;
+  padding-left: 1.5rem;
+}
+/*# sourceMappingURL=context-menu.css.map */
