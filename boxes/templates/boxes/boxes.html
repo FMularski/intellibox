@@ -1,3 +1,26 @@
-<h1>boxes page</h1>
-<p>{{user}}</p>
-<a href="{% url 'logout' %}">Log Out</a>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{user}}'s boxes {% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static '/boxes/css/boxes.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <header>
+        <div id="header-logo">
+            <img src="{% static '/img/box.gif' %}" alt="">
+            <span>intellibox</span>
+        </div>
+        <div id="header-username">
+            <span id="username"><i class="fas fa-user"></i> {{user}}</span>
+            <i id="logout-btn" class="fas fa-power-off"></i>
+        </div>
+    </header>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static '/boxes/js/logout.js' %}"></script>
+{% endblock %}

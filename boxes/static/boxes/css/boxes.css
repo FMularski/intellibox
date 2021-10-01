@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header div#header-logo img {
+  width: 8rem;
+}
+
+header div#header-logo span {
+  font-family: 'Righteous', cursive;
+  color: white;
+  font-size: 2rem;
+  text-shadow: #4c2685 5px 5px;
+}
+
+header div#header-username {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 2rem;
+}
+
+header div#header-username span {
+  color: white;
+  font-size: 1.2rem;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+header div#header-username span:hover {
+  color: #e8c2ff;
+  cursor: pointer;
+}
+
+header div#header-username i#logout-btn {
+  color: white;
+  margin-left: .5rem;
+  font-size: 1.2rem;
+  display: none;
+}
+
+header div#header-username i#logout-btn:hover {
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+@-webkit-keyframes spinning {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spinning {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+/*# sourceMappingURL=boxes.css.map */
