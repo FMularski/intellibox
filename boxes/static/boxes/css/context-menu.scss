@@ -24,5 +24,9 @@ div#context-menu {
             cursor: pointer;
             padding-left: 1.5rem;
         }
+
+        &:last-child {
+            border-bottom: none;
+        }
     }
 }

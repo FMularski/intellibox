@@ -1,4 +1,4 @@
-nav {
+nav p.new-btn, nav div {
   background: white;
   width: 20rem;
   font-size: 1.2rem;
@@ -6,6 +6,14 @@ nav {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   overflow: hidden;
+}
+
+nav p.new-btn {
+  margin-bottom: 1rem;
+}
+
+nav p.new-btn.hidden {
+  display: none;
 }
 
 nav p {
@@ -53,7 +61,7 @@ nav p.storage-occupied-data {
 }
 
 @media screen and (max-width: 750px) {
-  nav {
+  nav p.new-btn, nav div {
     width: 100vw !important;
     border-radius: 1rem;
     margin-bottom: 1rem;

@@ -109,6 +109,8 @@ div#main-panel div#search-sort-panels {
 div#main-panel div#search-sort-panels input, div#main-panel div#search-sort-panels select {
   width: 20rem;
   background: #d5baff;
+  -webkit-box-shadow: #4c2685 5px 5px;
+          box-shadow: #4c2685 5px 5px;
   color: white;
   text-align: center;
 }

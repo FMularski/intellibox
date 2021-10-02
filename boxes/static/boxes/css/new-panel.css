@@ -1,0 +1,109 @@
+div#dark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+div#dark.active {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 2;
+}
+
+div#new-panel {
+  position: fixed;
+  top: -50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40rem;
+  padding: 3rem;
+  background: white;
+  border-radius: 1rem;
+  -webkit-box-shadow: rgba(76, 38, 133, 0.4) 5px 5px;
+          box-shadow: rgba(76, 38, 133, 0.4) 5px 5px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+div#new-panel.active {
+  top: 10%;
+  z-index: 2;
+}
+
+div#new-panel h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div#new-panel h2 i#close-new-panel-btn {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+div#new-panel h2 i#close-new-panel-btn:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  cursor: pointer;
+}
+
+div#new-panel form input[type="text"], div#new-panel form select, div#new-panel form p.new-location {
+  margin-bottom: 1rem;
+  -webkit-box-shadow: #4c2685 5px 5px;
+          box-shadow: #4c2685 5px 5px;
+  background: #d5baff;
+  color: white;
+  text-align: center;
+}
+
+div#new-panel form p.new-location {
+  padding: .5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+div#new-panel form button {
+  display: block;
+  margin: auto;
+  margin-top: 2rem;
+  width: 15rem;
+}
+
+div#new-panel form input#new-file-input.hidden, div#new-panel form div#new-name.hidden {
+  display: none;
+}
+
+div#new-panel form input::-webkit-file-upload-button {
+  display: inline;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  width: 8rem;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  background: #7952b3;
+  padding: .25rem .5rem .25rem .5rem;
+  border-radius: 5px;
+  color: white;
+  border: none;
+}
+
+div#new-panel form input::-webkit-file-upload-button:hover, div#new-panel form input::-webkit-file-upload-button:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  cursor: pointer;
+}
+/*# sourceMappingURL=new-panel.css.map */

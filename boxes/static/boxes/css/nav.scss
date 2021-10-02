@@ -1,13 +1,24 @@
 $main-theme-color: rgb(121, 82, 179);
 
 nav {
-    background: white;
-    width: 20rem;
-    font-size: 1.2rem;
-    color: #7952b3;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    overflow: hidden;
+    
+    p.new-btn, div {
+        background: white;
+        width: 20rem;
+        font-size: 1.2rem;
+        color: #7952b3;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        overflow: hidden;
+    }
+
+    p.new-btn {
+        margin-bottom: 1rem;
+
+        &.hidden {
+            display: none;
+        }
+    }
 
     p {
         padding: 1rem;
@@ -58,8 +69,10 @@ nav {
 
 @media screen and (max-width: 750px) {
     nav {
-        width: 100vw !important;
-        border-radius: 1rem;
-        margin-bottom: 1rem;
+        p.new-btn, div {
+            width: 100vw !important;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+        }
     }
 }

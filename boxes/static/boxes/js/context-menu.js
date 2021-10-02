@@ -35,7 +35,6 @@
     // unclicking context menu, if clicked anywhere and not menu => hide
     document.addEventListener('click', event => {
         const clickedOutside = !contextMenu.contains(event.target);
-        console.log(clickedOutside);
 
         if (clickedOutside) {
             contextMenu.style.opacity = '0';

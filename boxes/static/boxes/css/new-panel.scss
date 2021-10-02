@@ -1,0 +1,96 @@
+div#dark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, .4);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+        z-index: 2;
+    }
+}
+
+div#new-panel {
+    position: fixed;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40rem;
+    padding: 3rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: rgba(76, 38, 133, 0.4) 5px 5px;
+    transition: all 0.3s ease;
+
+    &.active {
+        top: 10%;
+        z-index: 2;
+    }
+
+    h2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        i#close-new-panel-btn {
+            transition: all 0.3s ease;
+            &:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+    }
+
+    form {
+        input[type="text"], select, p.new-location {
+            margin-bottom: 1rem;
+            box-shadow: rgb(76, 38, 133) 5px 5px;
+            background: rgb(213, 186, 255);
+            color: white;
+            text-align: center;
+        }
+
+        p.new-location {
+            padding: .5rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 2rem;
+            width: 15rem;
+        }
+
+        input#new-file-input, div#new-name {
+            &.hidden {
+                display: none;
+            }
+        }
+
+        input::-webkit-file-upload-button {
+            display: inline;
+            margin-top: 1rem;
+            margin-right: 1rem;
+            width: 8rem;
+            transition: all 0.3s ease;
+            background: rgb(121, 82, 179);
+            padding: .25rem .5rem .25rem .5rem;
+            border-radius: 5px;
+            color: white;
+            border: none;
+
+            &:hover, &:focus {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+    }
+}

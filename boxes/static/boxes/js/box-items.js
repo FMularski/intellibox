@@ -2,14 +2,19 @@
     const boxItems = document.querySelectorAll('.box-item');
 
 
-    // mark clicked item
     boxItems.forEach(item => {
+        // mark clicked item
         item.addEventListener('click', () => {
             boxItems.forEach(item => {
                 item.classList.remove('active-box-item');
             });
             item.classList.toggle('active-box-item');
         });
+
+        item.addEventListener('dblclick', event => {
+            // open box ore preview file
+            alert(item + ' doubleclicked!');
+        })
     });
 
 
