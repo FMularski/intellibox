@@ -18,7 +18,7 @@ div#dark {
 
 div#new-panel {
     position: fixed;
-    top: -50%;
+    top: -80%;
     left: 50%;
     transform: translateX(-50%);
     width: 40rem;
@@ -54,12 +54,20 @@ div#new-panel {
             background: rgb(213, 186, 255);
             color: white;
             text-align: center;
+            
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         p.new-location {
             padding: .5rem;
             border-radius: 5px;
             text-align: center;
+
+            &:hover {
+                cursor: default;
+            }
         }
 
         button {

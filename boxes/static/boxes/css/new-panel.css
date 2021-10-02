@@ -19,7 +19,7 @@ div#dark.active {
 
 div#new-panel {
   position: fixed;
-  top: -50%;
+  top: -80%;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -70,10 +70,18 @@ div#new-panel form input[type="text"], div#new-panel form select, div#new-panel 
   text-align: center;
 }
 
+div#new-panel form input[type="text"]:hover, div#new-panel form select:hover, div#new-panel form p.new-location:hover {
+  cursor: pointer;
+}
+
 div#new-panel form p.new-location {
   padding: .5rem;
   border-radius: 5px;
   text-align: center;
+}
+
+div#new-panel form p.new-location:hover {
+  cursor: default;
 }
 
 div#new-panel form button {
