@@ -8,7 +8,7 @@ User = get_user_model()
 class Item(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    parent_box = models.ForeignKey('Box', on_delete=models.CASCADE)
+    parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, null=True)
     location = models.CharField(max_length=1024)
     last_modified = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
