@@ -119,6 +119,11 @@ div#main-panel div#search-sort-panels input:hover, div#main-panel div#search-sor
   cursor: pointer;
 }
 
+div#main-panel p#no-files {
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
 div#main-panel table {
   width: 100%;
   margin-top: 1rem;
