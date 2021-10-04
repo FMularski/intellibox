@@ -23,8 +23,8 @@ class OpenBoxView(APIView):
         
         return Response({
             'box': box_serializer.data,
-            'inner_boxes': inner_boxes_serializer.data,
-            'inner_files': inner_files_serializer.data
+            'innerBoxes': inner_boxes_serializer.data,
+            'innerFiles': inner_files_serializer.data
         })
 
 

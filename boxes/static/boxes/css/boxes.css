@@ -92,6 +92,11 @@ div#main-panel h2 {
   color: #a7a7a7;
 }
 
+div#main-panel h2 i {
+  -webkit-animation: spinning 1s ease infinite;
+          animation: spinning 1s ease infinite;
+}
+
 div#main-panel div#search-sort-panels {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -119,17 +124,29 @@ div#main-panel div#search-sort-panels input:hover, div#main-panel div#search-sor
   cursor: pointer;
 }
 
-div#main-panel p#no-files {
-  padding: 2rem;
+div#main-panel div#box-content p#loading-content {
+  text-align: center;
   font-size: 1.2rem;
+  color: #a7a7a7;
 }
 
-div#main-panel table {
+div#main-panel div#box-content p#loading-content i {
+  -webkit-animation: spinning 1s ease infinite;
+          animation: spinning 1s ease infinite;
+}
+
+div#main-panel div#box-content p#no-files {
+  padding: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+div#main-panel div#box-content table {
   width: 100%;
   margin-top: 1rem;
 }
 
-div#main-panel table tr {
+div#main-panel div#box-content table tr {
   height: 3rem;
   border-bottom: 1px solid gray;
   font-size: 1.2rem;
@@ -137,16 +154,16 @@ div#main-panel table tr {
   transition: all 0.3s ease;
 }
 
-div#main-panel table tr i {
+div#main-panel div#box-content table tr i {
   margin-left: 2rem;
 }
 
-div#main-panel table tr:hover {
+div#main-panel div#box-content table tr:hover {
   background: #e9e9e9;
   cursor: pointer;
 }
 
-div#main-panel table tr.active-box-item {
+div#main-panel div#box-content table tr.active-box-item {
   background: cornflowerblue;
   color: white;
 }

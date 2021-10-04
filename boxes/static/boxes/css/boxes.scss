@@ -68,6 +68,10 @@ div#main-panel {
 
     h2 {
         color: rgb(167, 167, 167);
+
+        i {
+            animation: spinning 1s ease infinite;
+        }
     }
 
     div#search-sort-panels {
@@ -89,33 +93,47 @@ div#main-panel {
         }
     }
 
-    p#no-files {
-        padding: 2rem;
-        font-size: 1.2rem;
-    }
+    div#box-content {
 
-    table {
-        width: 100%;
-        margin-top: 1rem;
-
-        tr {
-            height: 3rem;
-            border-bottom: 1px solid gray;
+        p#loading-content {
+            text-align: center;
             font-size: 1.2rem;
-            transition: all 0.3s ease;
+            color: rgb(167, 167, 167);
 
             i {
-                margin-left: 2rem;
+                animation: spinning 1s ease infinite;
             }
-
-            &:hover {
-                background: rgb(233, 233, 233);
-                cursor: pointer;
-            }
-
-            &.active-box-item {
-                background: cornflowerblue;
-                color: white;
+        }
+    
+        p#no-files {
+            padding: 2rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    
+        table {
+            width: 100%;
+            margin-top: 1rem;
+    
+            tr {
+                height: 3rem;
+                border-bottom: 1px solid gray;
+                font-size: 1.2rem;
+                transition: all 0.3s ease;
+    
+                i {
+                    margin-left: 2rem;
+                }
+    
+                &:hover {
+                    background: rgb(233, 233, 233);
+                    cursor: pointer;
+                }
+    
+                &.active-box-item {
+                    background: cornflowerblue;
+                    color: white;
+                }
             }
         }
     }

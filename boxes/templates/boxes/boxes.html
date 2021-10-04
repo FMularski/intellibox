@@ -42,10 +42,9 @@
             </div>
         </nav>
         <div id="main-panel">
-            <h2 id="current-path">box1/box2/filename</h2>
+            <h2 id="current-path"><i class="fas fa-spinner"></i></h2>
             <hr>
-            <p id="no-files"><i class="far fa-file-excel"></i> No files here yet.</p>
-            <!-- <div id="search-sort-panels">
+            <div id="search-sort-panels">
                 <div id="search-panel">
                     Search: <input type="text" class="form-control">
                 </div>
@@ -58,38 +57,10 @@
                     </select>
                 </div>
             </div>
-            <table>
-                <thead>
-                    <th></th>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Size</th>
-                    <th>Last Modified</th>
-                </thead>
-                <tbody>
-                    <tr class="box-item">
-                        <td><i class="far fa-star"></i></td>
-                        <td><i class="fas fa-archive"></i></td>
-                        <td>some name</td>
-                        <td>7.6 MB</td>
-                        <td>12 jan 2021</td>
-                    </tr>
-                    <tr class="box-item">
-                        <td><i class="far fa-star"></i></td>
-                        <td><i class="fas fa-archive"></i></td>
-                        <td>some name</td>
-                        <td>7.6 MB</td>
-                        <td>12 jan 2021</td>
-                    </tr>
-                    <tr class="box-item">
-                        <td><i class="far fa-star"></i></td>
-                        <td><i class="fas fa-archive"></i></td>
-                        <td>some name</td>
-                        <td>7.6 MB</td>
-                        <td>12 jan 2021</td>
-                    </tr>
-                </tbody>
-            </table> -->
+            <div id="box-content">
+                <p id="loading-content"><i class="fas fa-spinner"></i></p>
+                <!-- <p id="no-files"><i class="far fa-file-excel"></i> No files here yet.</p> -->
+            </div>
         </div>
     </main>
 
@@ -133,4 +104,68 @@
     <script src="{% static '/boxes/js/box-items.js' %}"></script>
     <script src="{% static '/boxes/js/context-menu.js' %}"></script>
     <script src="{% static '/boxes/js/new-panel.js' %}"></script>
+
+    <script>
+        (function(){
+            function formatSize(size) {
+
+                const units = ['B', 'KB', 'MB', 'GB'];
+                let units_idx = 0;
+
+                while ((size / 1024) > 1) {
+                    size = size / 1024;
+                    units_idx += 1;
+                }
+
+                return `${Math.round(size)} ${units[units_idx]}`;
+            }
+
+
+            const boxContent = document.querySelector('#box-content');
+
+            $.ajax({
+                url: '/api/open_root/',
+                dataType: 'json',
+                success: response => {
+                    console.log(response);
+                    document.querySelector('#current-path').innerHTML = response.box.name;
+                    
+                    // if no files/boxes in the box
+                    if (response.innerBoxes.length + response.innerFiles.length == 0) {
+                        boxContent.innerHTML = '<p id="no-files"><i class="far fa-file-excel"></i> No files here yet.</p>';
+                        return;
+                    }
+
+                    let rows = '';
+
+                    response.innerBoxes.concat(response.innerFiles).forEach(item => {
+                        rows += 
+                            '<tr class="box-item">' + 
+                                '<td><i class="far fa-star"></i></td>' +
+                                '<td>' + 
+                                    (item.instance ? '<i class="fas fa-file"></i>' : '<i class="fas fa-archive"></i>') +  
+                                '</td>' + 
+                                '<td>' + item.name + '</td>' + 
+                                '<td>' + (item.instance ? formatSize(item.size) : item.files_count) + '</td>' + 
+                                '<td>' + item.last_modified + '</td>' +
+                            '</tr>';
+                    });
+
+                    boxContent.innerHTML = 
+                        '<table>' + 
+                            '<thead>' + 
+                                '<th></th>' + 
+                                '<th></th>' + 
+                                '<th>Name</th>' + 
+                                '<th>Files/Size</th>' + 
+                                '<th>Last Modified</th>' + 
+                            '</thead>' + 
+                            '<tbody>' + rows + '</tbody>' + 
+                        '</table>';
+                }
+            });
+
+            
+        })();
+    </script>
 {% endblock %}

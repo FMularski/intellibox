@@ -11,7 +11,7 @@ class Item(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=1024, blank=True)
-    last_modified = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
 
 
@@ -31,12 +31,14 @@ class File(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, related_name='inner_files')
     instance = models.FileField()
     is_favourite = models.BooleanField(default=False)
+    size = models.BigIntegerField(blank=True)
 
     def __str__(self):
         return f'[File] {self.name}'
 
     def save(self, *args, **kwargs):
         self.location = get_location(self)
+        self.size = self.instance.size
         super(File, self).save(*args, **kwargs)
 
 
