@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.dispatch import receiver
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, pre_delete
 
 
 User = get_user_model()
@@ -10,7 +10,7 @@ User = get_user_model()
 class Item(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    location = models.CharField(max_length=1024)
+    location = models.CharField(max_length=1024, blank=True)
     last_modified = models.DateTimeField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
 
@@ -22,6 +22,10 @@ class Box(Item):
     def __str__(self):
         return f'[Box] {self.name}'
 
+    def save(self, *args, **kwargs):
+        self.location = get_location(self)
+        super(Box, self).save(*args, **kwargs)
+
 
 class File(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, related_name='inner_files')
@@ -30,6 +34,10 @@ class File(Item):
 
     def __str__(self):
         return f'[File] {self.name}'
+
+    def save(self, *args, **kwargs):
+        self.location = get_location(self)
+        super(File, self).save(*args, **kwargs)
 
 
 @receiver(post_save, sender=User)
@@ -45,15 +53,27 @@ def create_user_post_save_handler(instance, created, **kwargs):
 
 @receiver(post_save, sender=Box)
 @receiver(post_save, sender=File)
-def create_item_post_save_handler(instance, created, **kwargs):
+def item_post_save_handler(instance, created, **kwargs):
     if created and instance.parent_box: 
         instance.parent_box.files_count += 1
         instance.parent_box.save()
 
 
-@receiver(post_delete, sender=Box)
-@receiver(post_delete, sender=File)
-def delete_item_post_delete_handler(instance, **kwargs):
+@receiver(pre_delete, sender=Box)
+@receiver(pre_delete, sender=File)
+def item_pre_delete_handler(instance, **kwargs):
     if instance.parent_box:
         instance.parent_box.files_count -= 1
         instance.parent_box.save()
+
+
+def get_location(item):
+    location = item.name
+
+    current_box = item.parent_box
+
+    while current_box:
+        location = current_box.name + '/' + location
+        current_box = current_box.parent_box
+
+    return location
