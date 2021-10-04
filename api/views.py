@@ -13,7 +13,7 @@ class BoxListView(APIView):
         return Response(serializer.data)
 
 
-class BoxDetailView(APIView):
+class OpenBoxView(APIView):
     def get(self, request, pk):
         box = Box.objects.prefetch_related('inner_boxes', 'inner_files').get(pk=pk)
         
@@ -26,3 +26,9 @@ class BoxDetailView(APIView):
             'inner_boxes': inner_boxes_serializer.data,
             'inner_files': inner_files_serializer.data
         })
+
+
+class OpenRootBoxView(OpenBoxView):
+    def get(self, request):
+        root_box = Box.objects.get(owner=request.user, parent_box__isnull=True)
+        return super().get(request, root_box.pk)
