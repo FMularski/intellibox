@@ -1,4 +1,4 @@
-(function(){
+function addListenersToItems() {
     const boxItems = document.querySelectorAll('.box-item');
 
 
@@ -13,7 +13,7 @@
 
         item.addEventListener('dblclick', event => {
             // open box ore preview file
-            alert(item + ' doubleclicked!');
+            fetchItems(item.getAttribute('item-id'));
         })
     });
 
@@ -26,4 +26,4 @@
         })
     })
 
-})();
+}

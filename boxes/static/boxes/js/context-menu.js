@@ -1,4 +1,4 @@
-(function() {
+function initContextMenu() {
     const contextMenu = document.querySelector('#context-menu');
     const boxItems = document.querySelectorAll('.box-item');
     const body = document.querySelector('body');
@@ -42,4 +42,4 @@
         }
     })
 
-})();
+}

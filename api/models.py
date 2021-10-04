@@ -16,7 +16,7 @@ class Item(models.Model):
 
 
 class Box(Item):
-    parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, null=True, related_name='inner_boxes')
+    parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, null=True, blank=True, related_name='inner_boxes')
     files_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
@@ -70,7 +70,7 @@ def item_pre_delete_handler(instance, **kwargs):
 
 
 def get_location(item):
-    location = item.name
+    location = ''
 
     current_box = item.parent_box
 

@@ -92,9 +92,28 @@ div#main-panel h2 {
   color: #a7a7a7;
 }
 
-div#main-panel h2 i {
+div#main-panel h2 i.fa-spinner {
   -webkit-animation: spinning 1s ease infinite;
           animation: spinning 1s ease infinite;
+}
+
+div#main-panel h2 i.fa-arrow-left {
+  -webkit-animation: left-arrow .5s ease infinite alternate;
+          animation: left-arrow .5s ease infinite alternate;
+}
+
+div#main-panel h2 .breadcrumbs-segment {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+div#main-panel h2 .breadcrumbs-segment:hover {
+  cursor: pointer;
+  color: #4c2685;
+}
+
+div#main-panel p#current-path-full {
+  height: 1.2rem;
 }
 
 div#main-panel div#search-sort-panels {
@@ -187,6 +206,28 @@ div#main-panel div#box-content table tr.active-box-item {
   to {
     -webkit-transform: rotateZ(360deg);
             transform: rotateZ(360deg);
+  }
+}
+
+@-webkit-keyframes left-arrow {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-7px);
+            transform: translateX(-7px);
+  }
+}
+
+@keyframes left-arrow {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-7px);
+            transform: translateX(-7px);
   }
 }
 

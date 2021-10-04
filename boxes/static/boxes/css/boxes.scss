@@ -69,9 +69,25 @@ div#main-panel {
     h2 {
         color: rgb(167, 167, 167);
 
-        i {
+        i.fa-spinner {
             animation: spinning 1s ease infinite;
         }
+
+        i.fa-arrow-left {
+            animation: left-arrow .5s ease infinite alternate;
+        }
+
+        .breadcrumbs-segment {
+            transition: all 0.3s ease;
+            &:hover {
+                cursor: pointer;
+                color: rgb(76, 38, 133);
+            }
+        }
+    }
+
+    p#current-path-full {
+        height: 1.2rem;
     }
 
     div#search-sort-panels {
@@ -144,6 +160,14 @@ div#main-panel {
         transform: rotateZ(0deg);
     } to {
         transform: rotateZ(360deg);
+    }
+}
+
+@keyframes left-arrow {
+    from {
+        transform: translateX(0);
+    } to {
+        transform: translateX(-7px);
     }
 }
 
