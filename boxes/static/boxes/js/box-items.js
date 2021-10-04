@@ -12,8 +12,11 @@ function addListenersToItems() {
         });
 
         item.addEventListener('dblclick', event => {
-            // open box ore preview file
-            fetchItems(item.getAttribute('item-id'));
+            
+            if(item.getAttribute('item-type') == 'box')
+                fetchItems(item.getAttribute('item-id'));
+            else 
+                fetchFile(item.getAttribute('item-id'));
         })
     });
 

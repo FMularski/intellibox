@@ -130,6 +130,10 @@ div#main-panel div#search-sort-panels {
       flex-wrap: wrap;
 }
 
+div#main-panel div#search-sort-panels.hidden {
+  display: none;
+}
+
 div#main-panel div#search-sort-panels input, div#main-panel div#search-sort-panels select {
   width: 20rem;
   background: #d5baff;
@@ -185,6 +189,14 @@ div#main-panel div#box-content table tr:hover {
 div#main-panel div#box-content table tr.active-box-item {
   background: cornflowerblue;
   color: white;
+}
+
+div#main-panel div#box-content embed {
+  max-width: 100%;
+  min-width: 40%;
+  min-height: 30vh;
+  display: block;
+  margin: auto;
 }
 
 @-webkit-keyframes spinning {

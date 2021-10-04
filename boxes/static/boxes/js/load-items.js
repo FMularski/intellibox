@@ -12,10 +12,17 @@ function formatSize(size) {
 
 function displayItems(response) {
     const boxContent = document.querySelector('#box-content');
-        document.querySelector('#current-path').innerHTML =
-            (response.box.parent_box ? '<span class="breadcrumbs-segment" item-id="' + response.box.parent_box +  '"> <i class="fas fa-arrow-left"></i> </span>' : '') +  
-            '<span class="breadcrumbs-segment" item-id="' + response.box.id + '">' + response.box.name + '</span>';
-        document.querySelector('#current-path-full').innerHTML = response.box.location;
+    
+    // construct breadcrumbs
+    document.querySelector('#current-path').innerHTML =
+        (response.box.parent_box ? '<span class="breadcrumbs-segment" item-id="' + response.box.parent_box +  '"> <i class="fas fa-arrow-left"></i> </span>' : '') +  
+        '<span class="breadcrumbs-segment" item-id="' + response.box.id + '">' + response.box.name + '</span>';
+    
+    // display location
+    document.querySelector('#current-path-full').innerHTML = response.box.location;
+
+    // enable search and filter
+    document.querySelector('#search-sort-panels').classList.remove('hidden');
         
         // if no files/boxes in the box
         if (response.innerBoxes.length + response.innerFiles.length == 0) {
@@ -27,7 +34,7 @@ function displayItems(response) {
 
         response.innerBoxes.concat(response.innerFiles).forEach(item => {
             rows += 
-                '<tr class="box-item" item-id="' + item.id + '">' + 
+                '<tr class="box-item" item-id="' + item.id + '" item-type="' + (item.instance ? 'file' : 'box') + '">' + 
                     '<td><i class="far fa-star"></i></td>' +
                     '<td>' + 
                         (item.instance ? '<i class="fas fa-file"></i>' : '<i class="fas fa-archive"></i>') +  

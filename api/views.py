@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BoxSerializer, FileSerializer
-from .models import Box
+from .models import Box, File
 
 
 class BoxListView(APIView):
@@ -32,3 +32,11 @@ class OpenRootBoxView(OpenBoxView):
     def get(self, request):
         root_box = Box.objects.get(owner=request.user, parent_box__isnull=True)
         return super().get(request, root_box.pk)
+
+
+class PreviewFileView(APIView):
+    def get(self, request, pk):
+        file = File.objects.get(pk=pk)
+        file_serializer = FileSerializer(file)
+
+        return Response(file_serializer.data)
