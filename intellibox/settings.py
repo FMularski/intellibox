@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'intellibox_auth',
-    'boxes'
+    'boxes',
+    'api'
 ]
 
 MIDDLEWARE = [
