@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 User = get_user_model()
@@ -27,3 +29,14 @@ class File(Item):
 
     def __str__(self):
         return f'[File] {self.name}'
+
+
+@receiver(post_save, sender=User)
+def create_user_post_save_handler(instance, created, **kwargs):
+    if created:
+        user_root_box = Box()
+        user_root_box.owner = instance
+        user_root_box.name = 'main'
+        user_root_box.location = ''
+
+        user_root_box.save() 
