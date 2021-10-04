@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 
 
 User = get_user_model()
@@ -41,3 +41,19 @@ def create_user_post_save_handler(instance, created, **kwargs):
         user_root_box.location = ''
 
         user_root_box.save() 
+
+
+@receiver(post_save, sender=Box)
+@receiver(post_save, sender=File)
+def create_item_post_save_handler(instance, created, **kwargs):
+    if created and instance.parent_box: 
+        instance.parent_box.files_count += 1
+        instance.parent_box.save()
+
+
+@receiver(post_delete, sender=Box)
+@receiver(post_delete, sender=File)
+def delete_item_post_delete_handler(instance, **kwargs):
+    if instance.parent_box:
+        instance.parent_box.files_count -= 1
+        instance.parent_box.save()
