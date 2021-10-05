@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BoxSerializer, FileSerializer
-from .models import Box, File
+from .models import Box, File, Item
 
 
 class BoxListView(APIView):
@@ -40,3 +40,12 @@ class PreviewFileView(APIView):
         file_serializer = FileSerializer(file)
 
         return Response(file_serializer.data)
+
+
+class MarkAsFavouriteView(APIView):
+    def post(self, request, pk):
+        item = Item.objects.get(pk=pk)
+        item.is_favourite = not item.is_favourite
+        item.save()
+
+        return Response({'is_favourite': item.is_favourite})
