@@ -25,8 +25,16 @@ function displayItem(response) {
     // display location 
     document.querySelector('#current-path-full').innerHTML = response.location;
 
-    // disable search and filter
+    // disable search and filter and enable manage file panel
     document.querySelector('#search-sort-panels').classList.add('hidden');
+    document.querySelector('#manage-file-panel').classList.remove('hidden');
 
-    boxContent.innerHTML = '<embed src="' + response.instance + '" >';
+    if (['text', 'image', 'video', 'audio', 'pdf', 'code'].includes(response.category))
+        boxContent.innerHTML = '<embed class="' + response.category + '" src="' + response.instance + '" >';
+    else 
+        boxContent.innerHTML = 
+        '<div id="no-preview">' + 
+            '<i class="fas fa-eye-slash"></i>' + 
+            '<p>preview unavailable</p>' + 
+        '</div>';
 }

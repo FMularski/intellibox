@@ -7,7 +7,7 @@ class BoxAdmin(admin.ModelAdmin):
 
 
 class FileAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'owner', 'name', 'location', 'size', 'extension'
+    list_display = 'pk', 'owner', 'name', 'location', 'size', 'category'
 
 
 admin.site.register(models.Box, BoxAdmin)

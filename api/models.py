@@ -12,6 +12,7 @@ class Item(models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=1024, blank=True)
     last_modified = models.DateField(auto_now_add=True)
+    is_favourite = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
 
 
@@ -30,9 +31,9 @@ class Box(Item):
 class File(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, related_name='inner_files')
     instance = models.FileField()
-    is_favourite = models.BooleanField(default=False)
     size = models.BigIntegerField(blank=True)
-    extension = models.CharField(max_length=50, blank=True)
+    category = models.CharField(max_length=16, blank=True)
+
 
     def __str__(self):
         return f'[File] {self.name}'
@@ -40,7 +41,7 @@ class File(Item):
     def save(self, *args, **kwargs):
         self.location = get_location(self)
         self.size = self.instance.size
-        self.extension = self.instance.name.split('.')[-1]
+        self.category = set_category(extension=self.instance.name.split('.')[-1].lower())
         super(File, self).save(*args, **kwargs)
 
 
@@ -81,3 +82,41 @@ def get_location(item):
         current_box = current_box.parent_box
 
     return location
+
+
+def set_category(extension):
+    if extension in ['txt']:
+        return 'text'
+
+    if extension in ['doc', 'docm', 'docx', 'dotm', 'dotx', 'odt']:
+        return 'document'
+
+    if extension in ['3g2', '3gp', 'avi', 'mov', 'flv', 'mkv', 'mp4', 'mpg', 'ogv', 'webm', 'wmv']:
+        return 'video'
+
+    if extension in ['bmp', 'eps', 'gif', 'ico', 'jpg', 'png', 'svg', 'jpeg', 'tga', 'tiff', 'wbmp']:
+        return 'image'
+
+    if extension in ['aac', 'aaif', 'flac', 'm4a', 'm4r', 'mmf', 'mp3', 'ogg', 'opus', 'wav', 'wma']:
+        return 'audio'
+    
+    if extension in ['pdf']:
+        return 'pdf'
+    
+    if extension in ['xlsx', 'xlsm', 'xlsb', 'xltx']:
+        return 'excel'
+
+    if extension in ['pps', 'ppt', 'pptx']:
+        return 'powerpoint'
+
+    if extension in ['csv']:
+        return 'csv'
+
+    if extension in ['7z', 'bz2', 'gz', 'zip']:
+        return 'archive'
+
+    if extension in ['c', 'cgi', 'pl', 'class', 'cpp', 'cs', 'h', 'java', 'php', 'py', 'sh', 'swift', 
+        'vb', 'js', 'xml', 'css', 'asp', 'aspx']:
+        return 'code'
+
+    return 'not specified'
