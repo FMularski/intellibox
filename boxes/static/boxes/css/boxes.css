@@ -206,6 +206,10 @@ div#main-panel div#box-content table {
   margin-top: 1rem;
 }
 
+div#main-panel div#box-content table thead {
+  pointer-events: none;
+}
+
 div#main-panel div#box-content table tr {
   height: 3rem;
   border-bottom: 1px solid gray;

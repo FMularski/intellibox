@@ -18,8 +18,8 @@ class OpenBoxView(APIView):
         box = Box.objects.prefetch_related('inner_boxes', 'inner_files').get(pk=pk)
         
         box_serializer = BoxSerializer(box)
-        inner_boxes_serializer = BoxSerializer(box.inner_boxes.all(), many=True)
-        inner_files_serializer = FileSerializer(box.inner_files.all(), many=True) 
+        inner_boxes_serializer = BoxSerializer(box.inner_boxes.all().order_by('-is_favourite'), many=True)
+        inner_files_serializer = FileSerializer(box.inner_files.all().order_by('-is_favourite'), many=True) 
         
         return Response({
             'box': box_serializer.data,

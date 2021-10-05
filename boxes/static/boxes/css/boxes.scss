@@ -163,6 +163,10 @@ div#main-panel {
         table {
             width: 100%;
             margin-top: 1rem;
+
+            thead {
+                pointer-events: none;
+            }
     
             tr {
                 height: 3rem;
@@ -176,7 +180,7 @@ div#main-panel {
 
                     &.fav-btn {
                         transition: all 0.3s ease;
-                        
+
                         &:hover {
                             transform: scale(1.1);
                         }

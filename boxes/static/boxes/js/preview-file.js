@@ -12,6 +12,7 @@ function fetchFile(fileId) {
             displayItem(response);
             initBreadcrumbs();
             initFavourite();
+            initManageFilePanel(fileId);
         }
     });
 }
@@ -30,6 +31,14 @@ function displayItem(response) {
     document.querySelector('#search-sort-panels').classList.add('hidden');
     document.querySelector('#manage-file-panel').classList.remove('hidden');
 
+
+    // display correct favourite icon
+    const favBtn = document.querySelector('#manage-file-favourite');
+    favBtn.classList.remove('fas');
+    favBtn.classList.remove('far');
+    favBtn.classList.add(response.is_favourite ? 'fas': 'far');
+
+    // display embed or no preview
     if (['text', 'image', 'video', 'audio', 'pdf', 'code'].includes(response.category))
         boxContent.innerHTML = '<embed class="' + response.category + '" src="' + response.instance + '" >';
     else 
