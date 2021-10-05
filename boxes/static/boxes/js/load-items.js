@@ -65,7 +65,7 @@ function displayItems(response) {
         response.innerBoxes.concat(response.innerFiles).forEach(item => {
             rows += 
                 '<tr class="box-item" item-id="' + item.id + '" item-type="' + (item.instance ? 'file' : 'box') + '">' + 
-                    '<td><i class="far fa-star"></i></td>' +
+                    '<td><i class="' + (item.is_favourite ? 'fas' : 'far') + ' fa-star fav-btn" item-id="' + item.id + '"></i></td>' +
                     '<td>' + 
                         (item.instance ? assignFileIcon(item.category) : '<i class="fas fa-archive" style="color: brown;"></i>') +  
                     '</td>' + 
@@ -102,6 +102,7 @@ function fetchItems(boxId=null) {
             addListenersToItems();
             initContextMenu();
             initBreadcrumbs();
+            initFavourite();
         }
     });
 }

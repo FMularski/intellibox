@@ -11,6 +11,7 @@ function fetchFile(fileId) {
         success: response => {
             displayItem(response);
             initBreadcrumbs();
+            initFavourite();
         }
     });
 }

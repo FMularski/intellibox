@@ -173,6 +173,14 @@ div#main-panel {
                 i {
                     margin-left: 2rem;
                     font-size: 1.4rem;
+
+                    &.fav-btn {
+                        transition: all 0.3s ease;
+                        
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
                 }
     
                 &:hover {
