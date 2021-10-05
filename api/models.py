@@ -32,6 +32,7 @@ class File(Item):
     instance = models.FileField()
     is_favourite = models.BooleanField(default=False)
     size = models.BigIntegerField(blank=True)
+    extension = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f'[File] {self.name}'
@@ -39,6 +40,7 @@ class File(Item):
     def save(self, *args, **kwargs):
         self.location = get_location(self)
         self.size = self.instance.size
+        self.extension = self.instance.name.split('.')[-1]
         super(File, self).save(*args, **kwargs)
 
 
