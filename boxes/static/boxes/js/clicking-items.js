@@ -1,4 +1,4 @@
-function addListenersToItems() {
+function initClickingItems() {
     const boxItems = document.querySelectorAll('.box-item');
 
 

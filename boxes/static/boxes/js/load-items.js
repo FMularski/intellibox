@@ -99,10 +99,10 @@ function fetchItems(boxId=null) {
         dataType: 'json',
         success: response => {
             displayItems(response);
-            addListenersToItems();
+            initClickingItems();
             initContextMenu();
             initBreadcrumbs();
-            initFavourite();
+            initFavouriteButtons();
         }
     });
 }

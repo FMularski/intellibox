@@ -1,4 +1,4 @@
-function initFavourite() {
+function initFavouriteButtons() {
     const favBtns = document.querySelectorAll('.fav-btn');
 
     favBtns.forEach(btn => {
