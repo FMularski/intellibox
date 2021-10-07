@@ -26,10 +26,10 @@
         <nav>
             <p class="new-btn"><i class="fas fa-plus"></i> New</p>
             <div>
-                <p class="nav-item active-nav-item"><i class="fas fa-box-open"></i> My box</p>
-                <p class="nav-item"><i class="fas fa-star"></i> Favourites</p>
-                <p class="nav-item"><i class="fas fa-clock"></i> Recent</p>
-                <p class="nav-item"><i class="fas fa-trash-alt"></i> Bin</p>
+                <p id="nav-root" class="nav-item active-nav-item"><i class="fas fa-box-open"></i> My box</p>
+                <p id="nav-favourites" class="nav-item"><i class="fas fa-star"></i> Favourites</p>
+                <p id="nav-recent" class="nav-item"><i class="fas fa-clock"></i> Recent</p>
+                <p id="nav-bin" class="nav-item"><i class="fas fa-trash-alt"></i> Bin</p>
                 <hr>
                 <p class="storage-info"><i class="fas fa-cloud"></i> Storage</p>
                 <div class="storage-bar-bg">
@@ -107,7 +107,6 @@
 
 {% block script %}
     <script src="{% static '/boxes/js/logout.js' %}"></script>
-    <script src="{% static '/boxes/js/nav.js' %}"></script>
     <script src="{% static '/boxes/js/clicking-items.js' %}"></script>
     <script src="{% static '/boxes/js/context-menu.js' %}"></script>
     <script src="{% static '/boxes/js/new-panel.js' %}"></script>
@@ -116,4 +115,5 @@
     <script src="{% static '/boxes/js/preview-file.js' %}"></script>
     <script src="{% static '/boxes/js/favourite-buttons.js' %}"></script>
     <script src="{% static '/boxes/js/manage-file-panel.js' %}"></script>
+    <script src="{% static '/boxes/js/nav.js' %}"></script>
 {% endblock %}

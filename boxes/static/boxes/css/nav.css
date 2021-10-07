@@ -35,6 +35,11 @@ nav p.nav-item:hover, nav p.new-btn:hover {
   padding-left: 2rem;
 }
 
+nav p.nav-item.inactive, nav p.new-btn.inactive {
+  pointer-events: none;
+  color: grey;
+}
+
 nav hr {
   width: 80%;
   margin: .4rem auto .4rem auto;

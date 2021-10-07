@@ -38,6 +38,11 @@ nav {
             cursor: pointer;
             padding-left: 2rem;
         }
+
+        &.inactive {
+            pointer-events: none;
+            color: grey;
+        }
     }
 
     hr {

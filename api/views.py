@@ -51,8 +51,8 @@ class FavouritesView(APIView):
         fav_files_serializer = FileSerializer(favourite_files, many=True)
 
         return Response({
-            'favBoxes': fav_boxes_serializer.data,
-            'favFiles': fav_files_serializer.data
+            'innerBoxes': fav_boxes_serializer.data,
+            'innerFiles': fav_files_serializer.data
         })
 
 

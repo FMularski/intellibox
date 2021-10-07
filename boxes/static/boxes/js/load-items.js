@@ -41,14 +41,17 @@ function assignFileIcon(category) {
 
 function displayItems(response) {
     const boxContent = document.querySelector('#box-content');
-    
-    // construct breadcrumbs
-    document.querySelector('#current-path').innerHTML =
-        (response.box.parent_box ? '<span class="breadcrumbs-segment" item-id="' + response.box.parent_box +  '"> <i class="fas fa-arrow-left"></i> </span>' : '') +  
-        '<span class="breadcrumbs-segment" item-id="' + response.box.id + '">' + response.box.name + '</span>';
-    
-    // display location
-    document.querySelector('#current-path-full').innerHTML = response.box.location;
+
+    // build breadcrumbs and display location only if open box - not when display favourites etc.
+    if(response.box) {
+        // construct breadcrumbs
+        document.querySelector('#current-path').innerHTML =
+            (response.box.parent_box ? '<span class="breadcrumbs-segment" item-id="' + response.box.parent_box +  '"> <i class="fas fa-arrow-left"></i> </span>' : '') +  
+            '<span class="breadcrumbs-segment" item-id="' + response.box.id + '">' + response.box.name + '</span>';
+        
+        // display location
+        document.querySelector('#current-path-full').innerHTML = response.box.location;
+    }
 
     // enable search and filter and disable manage file panel
     document.querySelector('#search-sort-panels').classList.remove('hidden');
