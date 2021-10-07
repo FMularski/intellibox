@@ -18,8 +18,8 @@ class OpenBoxView(APIView):
         box = Box.objects.prefetch_related('inner_boxes', 'inner_files').get(pk=pk)
         
         box_serializer = BoxSerializer(box)
-        inner_boxes_serializer = BoxSerializer(box.inner_boxes.all().order_by('-is_favourite'), many=True)
-        inner_files_serializer = FileSerializer(box.inner_files.all().order_by('-is_favourite'), many=True) 
+        inner_boxes_serializer = BoxSerializer(box.inner_boxes.filter(is_deleted=False).order_by('-is_favourite'), many=True)
+        inner_files_serializer = FileSerializer(box.inner_files.filter(is_deleted=False).order_by('-is_favourite'), many=True) 
         
         return Response({
             'box': box_serializer.data,
@@ -44,10 +44,10 @@ class PreviewFileView(APIView):
 
 class FavouritesView(APIView):
     def get(self, request):
-        favourite_boxes = Box.objects.filter(owner=request.user, is_favourite=True)
+        favourite_boxes = Box.objects.filter(owner=request.user, is_favourite=True, is_deleted=False)
         fav_boxes_serializer = BoxSerializer(favourite_boxes, many=True)
 
-        favourite_files = File.objects.filter(owner=request.user, is_favourite=True)
+        favourite_files = File.objects.filter(owner=request.user, is_favourite=True, is_deleted=False)
         fav_files_serializer = FileSerializer(favourite_files, many=True)
 
         return Response({
@@ -60,15 +60,29 @@ class RecentView(APIView):
     def get(self, request):
         limit = 5
 
-        recent_boxes = Box.objects.filter(owner=request.user, parent_box__isnull=False).order_by('-last_modified')[:limit]
+        recent_boxes = Box.objects.filter(owner=request.user, parent_box__isnull=False, is_deleted=False).order_by('-last_modified')[:limit]
         recent_boxes_serializer = BoxSerializer(recent_boxes, many=True)
 
-        recent_files = File.objects.filter(owner=request.user).order_by('-last_modified')[:limit]
+        recent_files = File.objects.filter(owner=request.user, is_deleted=False).order_by('-last_modified')[:limit]
         recent_files_serializer = FileSerializer(recent_files, many=True)
 
         return Response({
             'innerBoxes': recent_boxes_serializer.data,
             'innerFiles': recent_files_serializer.data
+        })
+
+
+class BinView(APIView):
+    def get(self, request):
+        bin_boxes = Box.objects.filter(owner=request.user, is_deleted=True)
+        bin_boxes_serializer = BoxSerializer(bin_boxes, many=True)
+
+        bin_files = File.objects.filter(owner=request.user, is_deleted=True)
+        bin_files_serializer = FileSerializer(bin_files, many=True)
+
+        return Response({
+            'innerBoxes': bin_boxes_serializer.data,
+            'innerFiles': bin_files_serializer.data
         })
 
 

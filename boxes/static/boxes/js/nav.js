@@ -91,9 +91,30 @@
         })
     }
 
+    function bin(){
+        const currentPath = clearPath();
+
+        $.ajax({
+            url: '/api/bin/',
+            dataType: 'json',
+            success: response => {
+                displayItems(response);
+                initClickingItems();
+                initContextMenu();
+                initBreadcrumbs();
+                initFavouriteButtons();
+                unlockAllNavBtns();
+
+                currentPath.innerHTML = '<i class="fas fa-trash"></i> Bin';
+            }
+        })
+
+    }
+
     const navRootBtn = document.querySelector('#nav-root');
     const navFavouritesBtn = document.querySelector('#nav-favourites');
     const navRecentBtn = document.querySelector('#nav-recent');
+    const navBinBtn = document.querySelector('#nav-bin');
 
     navRootBtn.addEventListener('click', event => {
         lockOtherNavBtns(event.target);
@@ -108,6 +129,11 @@
     navRecentBtn.addEventListener('click', event => {
         lockOtherNavBtns(event.target);
         recent();
-    })
+    });
+
+    navBinBtn.addEventListener('click', event => {
+        lockOtherNavBtns(event.target);
+        bin();
+    });
 
 })();
