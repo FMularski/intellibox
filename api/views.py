@@ -56,6 +56,22 @@ class FavouritesView(APIView):
         })
 
 
+class RecentView(APIView):
+    def get(self, request):
+        limit = 5
+
+        recent_boxes = Box.objects.filter(owner=request.user, parent_box__isnull=False).order_by('-last_modified')[:limit]
+        recent_boxes_serializer = BoxSerializer(recent_boxes, many=True)
+
+        recent_files = File.objects.filter(owner=request.user).order_by('-last_modified')[:limit]
+        recent_files_serializer = FileSerializer(recent_files, many=True)
+
+        return Response({
+            'innerBoxes': recent_boxes_serializer.data,
+            'innerFiles': recent_files_serializer.data
+        })
+
+
 class MarkAsFavouriteView(APIView):
     def post(self, request, pk):
         item = Item.objects.get(pk=pk)
