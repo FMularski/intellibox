@@ -7,5 +7,6 @@ urlpatterns = [
     path('open_box/<int:pk>/', views.OpenBoxView.as_view(), name='open_box'),
     path('open_root/', views.OpenRootBoxView.as_view(), name='open_root'),
     path('preview_file/<int:pk>/', views.PreviewFileView.as_view(), name='preview_file'),
+    path('favourites/', views.FavouritesView.as_view(), name='favourites'),
     path('mark_as_favourite/<int:pk>/', views.MarkAsFavouriteView.as_view(), name='mark_as_favourite'),
 ]

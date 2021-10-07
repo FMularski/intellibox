@@ -42,6 +42,20 @@ class PreviewFileView(APIView):
         return Response(file_serializer.data)
 
 
+class FavouritesView(APIView):
+    def get(self, request):
+        favourite_boxes = Box.objects.filter(owner=request.user, is_favourite=True)
+        fav_boxes_serializer = BoxSerializer(favourite_boxes, many=True)
+
+        favourite_files = File.objects.filter(owner=request.user, is_favourite=True)
+        fav_files_serializer = FileSerializer(favourite_files, many=True)
+
+        return Response({
+            'favBoxes': fav_boxes_serializer.data,
+            'favFiles': fav_files_serializer.data
+        })
+
+
 class MarkAsFavouriteView(APIView):
     def post(self, request, pk):
         item = Item.objects.get(pk=pk)
