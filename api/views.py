@@ -100,3 +100,17 @@ class MarkAsFavouriteView(APIView):
         item.save()
 
         return Response({'is_favourite': item.is_favourite})
+
+
+class SearchView(APIView):
+    def get(self, request, input):
+        found_boxes = Box.objects.filter(owner=request.user, name__istartswith=input, is_deleted=False, parent_box__isnull=False)
+        found_boxes_serializer = BoxSerializer(found_boxes, many=True)
+
+        found_files = File.objects.filter(owner=request.user, name__istartswith=input, is_deleted=False)
+        found_files_serializer = FileSerializer(found_files, many=True)
+
+        return Response({
+            'found_boxes': found_boxes_serializer.data,
+            'found_files': found_files_serializer.data
+        })

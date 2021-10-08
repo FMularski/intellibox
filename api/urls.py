@@ -10,4 +10,5 @@ urlpatterns = [
     path('recent/', views.RecentView.as_view(), name='recent'),
     path('bin/', views.BinView.as_view(), name='bin'),
     path('mark_as_favourite/<int:pk>/', views.MarkAsFavouriteView.as_view(), name='mark_as_favourite'),
+    path('search/<str:input>/', views.SearchView.as_view(), name='search'),
 ]
