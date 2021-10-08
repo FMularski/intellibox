@@ -10,14 +10,13 @@
         })
     });
 
-    function lockOtherNavBtns(clicked) {
+    function lockNavBtns() {
         navItems.forEach(item => {
             item.classList.add('inactive');
-            clicked.classList.remove('inactive');
         })
     } 
 
-    function unlockAllNavBtns() {
+    function unlockNavBtns() {
         navItems.forEach(item => {
             item.classList.remove('inactive');
         })
@@ -48,7 +47,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
-                unlockAllNavBtns();
+                unlockNavBtns();
             }
         });
     }
@@ -65,7 +64,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
-                unlockAllNavBtns();
+                unlockNavBtns();
 
                 currentPath.innerHTML = '<i class="fas fa-star"></i> Favourites';
             }
@@ -84,7 +83,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
-                unlockAllNavBtns();
+                unlockNavBtns();
 
                 currentPath.innerHTML = '<i class="fas fa-clock"></i> Recent';
             }
@@ -103,7 +102,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
-                unlockAllNavBtns();
+                unlockNavBtns();
 
                 currentPath.innerHTML = '<i class="fas fa-trash"></i> Bin';
             }
@@ -117,22 +116,22 @@
     const navBinBtn = document.querySelector('#nav-bin');
 
     navRootBtn.addEventListener('click', event => {
-        lockOtherNavBtns(event.target);
+        lockNavBtns();
         openRoot();
     });
 
     navFavouritesBtn.addEventListener('click', event => {
-        lockOtherNavBtns(event.target);
+        lockNavBtns();
         favourites();
     });
 
     navRecentBtn.addEventListener('click', event => {
-        lockOtherNavBtns(event.target);
+        lockNavBtns();
         recent();
     });
 
     navBinBtn.addEventListener('click', event => {
-        lockOtherNavBtns(event.target);
+        lockNavBtns();
         bin();
     });
 

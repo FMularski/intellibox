@@ -73,7 +73,8 @@ function displayItems(response) {
                         (item.instance ? assignFileIcon(item.category) : '<i class="fas fa-archive" style="color: brown;"></i>') +  
                     '</td>' + 
                     '<td>' + item.name + '</td>' + 
-                    '<td>' + (item.instance ? formatSize(item.size) : item.files_count + ' files') + '</td>' + 
+                    '<td>' + formatSize(item.size) + '</td>' + 
+                    // '<td>' + (item.instance ? formatSize(item.size) : item.files_count + ' items') + '</td>' + 
                     '<td>' + item.last_modified + '</td>' +
                 '</tr>';
         });

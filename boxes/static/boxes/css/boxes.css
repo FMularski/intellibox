@@ -148,6 +148,10 @@ div#main-panel div#search-sort-panels input:hover, div#main-panel div#search-sor
   cursor: pointer;
 }
 
+div#main-panel div#search-sort-panels select {
+  font-family: 'FontAwesome', sans-serif;
+}
+
 div#main-panel div#manage-file-panel {
   padding: 1rem;
   background: #c7c7c7;

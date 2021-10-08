@@ -3,7 +3,7 @@ from . import models
 
 
 class BoxAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'owner', 'name', 'location', 'files_count'
+    list_display = 'pk', 'owner', 'name', 'location', 'files_count', 'size'
 
 
 class FileAdmin(admin.ModelAdmin):

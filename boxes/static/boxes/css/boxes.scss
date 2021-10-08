@@ -107,10 +107,14 @@ div#main-panel {
             box-shadow: rgb(76, 38, 133) 5px 5px;
             color: white;
             text-align: center;
-
+            
             &:hover {
                 cursor: pointer;
             }
+        }
+        
+        select {
+            font-family: 'FontAwesome', sans-serif;
         }
     }
 

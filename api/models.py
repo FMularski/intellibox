@@ -14,6 +14,7 @@ class Item(models.Model):
     last_modified = models.DateField(auto_now_add=True)
     is_favourite = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
+    size = models.BigIntegerField(blank=True, default=0)
 
 
 class Box(Item):
@@ -25,13 +26,22 @@ class Box(Item):
 
     def save(self, *args, **kwargs):
         self.location = get_location(self)
+
+        total_size = 0
+        
+        for file_ in self.inner_files.all():
+            total_size += file_.size if not file_.is_deleted else 0
+
+        for box in self.inner_boxes.all():
+            total_size += box.size if not box.is_deleted else 0
+
+        self.size = total_size
         super(Box, self).save(*args, **kwargs)
 
 
 class File(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, related_name='inner_files')
     instance = models.FileField()
-    size = models.BigIntegerField(blank=True)
     category = models.CharField(max_length=16, blank=True)
 
 
@@ -59,15 +69,27 @@ def create_user_post_save_handler(instance, created, **kwargs):
 @receiver(post_save, sender=Box)
 @receiver(post_save, sender=File)
 def item_post_save_handler(instance, created, **kwargs):
-    if created and instance.parent_box: 
-        instance.parent_box.files_count += 1
+    if instance.parent_box:
+
+        # keep track of files number in the box
+        if created:
+            instance.parent_box.files_count += 1    
+        
+        # saving parent causes updating the size field
         instance.parent_box.save()
+
+
+    # if created and instance.parent_box: 
+    #     instance.parent_box.files_count += 1
+    #     instance.parent_box.save()
 
 
 @receiver(pre_delete, sender=Box)
 @receiver(pre_delete, sender=File)
 def item_pre_delete_handler(instance, **kwargs):
     if instance.parent_box:
+
+        # keep track of files number in the box and update the size field 
         instance.parent_box.files_count -= 1
         instance.parent_box.save()
 

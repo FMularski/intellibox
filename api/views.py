@@ -6,20 +6,18 @@ from .serializers import BoxSerializer, FileSerializer
 from .models import Box, File, Item
 
 
-class BoxListView(APIView):
-    def get(self, request):
-        boxes = Box.objects.filter(owner=request.user)
-        serializer = BoxSerializer(boxes, many=True)
-        return Response(serializer.data)
-
-
 class OpenBoxView(APIView):
     def get(self, request, pk):
         box = Box.objects.prefetch_related('inner_boxes', 'inner_files').get(pk=pk)
-        
         box_serializer = BoxSerializer(box)
-        inner_boxes_serializer = BoxSerializer(box.inner_boxes.filter(is_deleted=False).order_by('-is_favourite'), many=True)
-        inner_files_serializer = FileSerializer(box.inner_files.filter(is_deleted=False).order_by('-is_favourite'), many=True) 
+
+        sort_by = request.GET.get('sort_by') if request.GET.get('sort_by') else '-is_favourite'
+
+        inner_boxes = box.inner_boxes.filter(is_deleted=False).order_by(sort_by)
+        inner_boxes_serializer = BoxSerializer(inner_boxes, many=True)
+
+        inner_files = box.inner_files.filter(is_deleted=False).order_by(sort_by)
+        inner_files_serializer = FileSerializer(inner_files, many=True) 
         
         return Response({
             'box': box_serializer.data,
