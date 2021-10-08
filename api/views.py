@@ -42,10 +42,12 @@ class PreviewFileView(APIView):
 
 class FavouritesView(APIView):
     def get(self, request):
-        favourite_boxes = Box.objects.filter(owner=request.user, is_favourite=True, is_deleted=False)
+        sort_by = request.GET.get('sort_by') if request.GET.get('sort_by') else '-is_favourite'
+
+        favourite_boxes = Box.objects.filter(owner=request.user, is_favourite=True, is_deleted=False).order_by(sort_by)
         fav_boxes_serializer = BoxSerializer(favourite_boxes, many=True)
 
-        favourite_files = File.objects.filter(owner=request.user, is_favourite=True, is_deleted=False)
+        favourite_files = File.objects.filter(owner=request.user, is_favourite=True, is_deleted=False).order_by(sort_by)
         fav_files_serializer = FileSerializer(favourite_files, many=True)
 
         return Response({
@@ -56,12 +58,17 @@ class FavouritesView(APIView):
 
 class RecentView(APIView):
     def get(self, request):
+        sort_by = request.GET.get('sort_by') if request.GET.get('sort_by') else '-is_favourite'
         limit = 5
 
-        recent_boxes = Box.objects.filter(owner=request.user, parent_box__isnull=False, is_deleted=False).order_by('-last_modified')[:limit]
+        recent_boxes = Box.objects \
+            .filter(owner=request.user, parent_box__isnull=False, is_deleted=False) \
+            .order_by('-last_modified').order_by(sort_by)[:limit]
         recent_boxes_serializer = BoxSerializer(recent_boxes, many=True)
 
-        recent_files = File.objects.filter(owner=request.user, is_deleted=False).order_by('-last_modified')[:limit]
+        recent_files = File.objects \
+            .filter(owner=request.user, is_deleted=False) \
+            .order_by('-last_modified').order_by(sort_by)[:limit]
         recent_files_serializer = FileSerializer(recent_files, many=True)
 
         return Response({
@@ -72,10 +79,12 @@ class RecentView(APIView):
 
 class BinView(APIView):
     def get(self, request):
-        bin_boxes = Box.objects.filter(owner=request.user, is_deleted=True)
+        sort_by = request.GET.get('sort_by') if request.GET.get('sort_by') else '-is_favourite'
+
+        bin_boxes = Box.objects.filter(owner=request.user, is_deleted=True).order_by(sort_by)
         bin_boxes_serializer = BoxSerializer(bin_boxes, many=True)
 
-        bin_files = File.objects.filter(owner=request.user, is_deleted=True)
+        bin_files = File.objects.filter(owner=request.user, is_deleted=True).order_by(sort_by)
         bin_files_serializer = FileSerializer(bin_files, many=True)
 
         return Response({

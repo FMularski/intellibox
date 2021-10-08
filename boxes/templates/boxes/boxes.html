@@ -51,11 +51,11 @@
                 </div>
                 <div id="sort-panel">
                     Sort:
-                    <select name="" id="" class="form-control">
-                        <option value="">Favourite</option>
-                        <option value="">Name</option>
-                        <option value="">Size</option>
-                        <option value="">Modified date</option>
+                    <select box-to-sort="box" id="sort" class="form-control fa-select">
+                        <option value="-is_favourite">Favourite</option>
+                        <option value="name">Name</option>
+                        <option value="size">Size</option>
+                        <option value="-last_modified">Modified date</option>
                     </select>
                 </div>
             </div>
@@ -116,4 +116,5 @@
     <script src="{% static '/boxes/js/favourite-buttons.js' %}"></script>
     <script src="{% static '/boxes/js/manage-file-panel.js' %}"></script>
     <script src="{% static '/boxes/js/nav.js' %}"></script>
+    <script src="{% static '/boxes/js/sort.js' %}"></script>
 {% endblock %}

@@ -37,9 +37,11 @@
 
     function openRoot() {
         const currentPath = clearPath();
-    
+        const sort = document.querySelector('#sort');
+        sort.setAttribute('box-to-sort', 'box');
+
         $.ajax({
-            url: '/api/open_root/',
+            url: '/api/open_root/?sort_by=' + sort.value,
             dataType: 'json',
             success: response => {
                 displayItems(response);
@@ -47,16 +49,21 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
+                initSort();
                 unlockNavBtns();
+
+                // document.querySelector('#sort').value = "-is_favourite";
             }
         });
     }
 
     function favourites() {
         const currentPath = clearPath();
-    
+        const sort = document.querySelector('#sort');
+        sort.setAttribute('box-to-sort', 'favourites');
+        
         $.ajax({
-            url: '/api/favourites/',
+            url: '/api/favourites/?sort_by=' + sort.value,
             dataType: 'json',
             success: response => {
                 displayItems(response);
@@ -64,6 +71,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
+                initSort();
                 unlockNavBtns();
 
                 currentPath.innerHTML = '<i class="fas fa-star"></i> Favourites';
@@ -73,9 +81,11 @@
 
     function recent() {
         const currentPath = clearPath();
+        const sort = document.querySelector('#sort');
+        sort.setAttribute('box-to-sort', 'recent');
 
         $.ajax({
-            url: '/api/recent/',
+            url: '/api/recent/?sort_by=' + sort.value,
             dataType: 'json',
             success: response => {
                 displayItems(response);
@@ -83,6 +93,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
+                initSort();
                 unlockNavBtns();
 
                 currentPath.innerHTML = '<i class="fas fa-clock"></i> Recent';
@@ -92,9 +103,11 @@
 
     function bin(){
         const currentPath = clearPath();
+        const sort = document.querySelector('#sort');
+        sort.setAttribute('box-to-sort', 'bin');
 
         $.ajax({
-            url: '/api/bin/',
+            url: '/api/bin/?sort_by=' + sort.value,
             dataType: 'json',
             success: response => {
                 displayItems(response);
@@ -102,6 +115,7 @@
                 initContextMenu();
                 initBreadcrumbs();
                 initFavouriteButtons();
+                initSort();
                 unlockNavBtns();
 
                 currentPath.innerHTML = '<i class="fas fa-trash"></i> Bin';

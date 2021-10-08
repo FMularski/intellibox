@@ -42,6 +42,10 @@ function assignFileIcon(category) {
 function displayItems(response) {
     const boxContent = document.querySelector('#box-content');
 
+    // enable search and sort and disable manage file panel
+    document.querySelector('#search-sort-panels').classList.remove('hidden');
+    document.querySelector('#manage-file-panel').classList.add('hidden');
+
     // build breadcrumbs and display location only if open box - not when display favourites etc.
     if(response.box) {
         // construct breadcrumbs
@@ -51,45 +55,46 @@ function displayItems(response) {
         
         // display location
         document.querySelector('#current-path-full').innerHTML = response.box.location;
+
+
+        // set attribute required for 
+        document.querySelector('#sort').setAttribute('box-to-sort', response.box.id);
     }
 
-    // enable search and filter and disable manage file panel
-    document.querySelector('#search-sort-panels').classList.remove('hidden');
-    document.querySelector('#manage-file-panel').classList.add('hidden');
-        
-        // if no files/boxes in the box
-        if (response.innerBoxes.length + response.innerFiles.length == 0) {
-            boxContent.innerHTML = '<p id="no-files"><i class="far fa-file-excel"></i> No files here yet.</p>';
-            return;
-        }
+            
+    // if no files/boxes in the box
+    if (response.innerBoxes.length + response.innerFiles.length == 0) {
+        boxContent.innerHTML = '<p id="no-files"><i class="far fa-file-excel"></i> No files here yet.</p>';
+        return;
+    }
 
-        let rows = '';
+    let rows = '';
 
-        response.innerBoxes.concat(response.innerFiles).forEach(item => {
-            rows += 
-                '<tr class="box-item" item-id="' + item.id + '" item-type="' + (item.instance ? 'file' : 'box') + '">' + 
-                    '<td><i class="' + (item.is_favourite ? 'fas' : 'far') + ' fa-star fav-btn" item-id="' + item.id + '"></i></td>' +
-                    '<td>' + 
-                        (item.instance ? assignFileIcon(item.category) : '<i class="fas fa-archive" style="color: brown;"></i>') +  
-                    '</td>' + 
-                    '<td>' + item.name + '</td>' + 
-                    '<td>' + formatSize(item.size) + '</td>' + 
-                    // '<td>' + (item.instance ? formatSize(item.size) : item.files_count + ' items') + '</td>' + 
-                    '<td>' + item.last_modified + '</td>' +
-                '</tr>';
-        });
+    response.innerBoxes.concat(response.innerFiles).forEach(item => {
+        rows += 
+            '<tr class="box-item ' + (item.instance ? '' : 'box-row') + '" item-id="' + item.id + '" item-type="' + (item.instance ? 'file' : 'box') + '">' + 
+                '<td><i class="' + (item.is_favourite ? 'fas' : 'far') + ' fa-star fav-btn" item-id="' + item.id + '"></i></td>' +
+                '<td>' + 
+                    (item.instance ? assignFileIcon(item.category) : '<i class="fas fa-archive" style="color: brown;"></i>') +  
+                '</td>' + 
+                '<td>' + item.name + '</td>' + 
+                '<td>' + formatSize(item.size) + '</td>' + 
+                // '<td>' + (item.instance ? formatSize(item.size) : item.files_count + ' items') + '</td>' + 
+                '<td>' + item.last_modified + '</td>' +
+            '</tr>';
+    });
 
-        boxContent.innerHTML = 
-            '<table>' + 
-                '<thead>' + 
-                    '<th></th>' + 
-                    '<th></th>' + 
-                    '<th>Name</th>' + 
-                    '<th>Size</th>' + 
-                    '<th>Last Modified</th>' + 
-                '</thead>' + 
-                '<tbody>' + rows + '</tbody>' + 
-            '</table>';
+    boxContent.innerHTML = 
+        '<table>' + 
+            '<thead>' + 
+                '<th></th>' + 
+                '<th></th>' + 
+                '<th>Name</th>' + 
+                '<th>Size</th>' + 
+                '<th>Last Modified</th>' + 
+            '</thead>' + 
+            '<tbody>' + rows + '</tbody>' + 
+        '</table>';
 }
 
 function fetchItems(boxId=null) {
@@ -98,8 +103,10 @@ function fetchItems(boxId=null) {
     document.querySelector('#current-path').innerHTML = '<i class="fas fa-spinner"></i>';
     document.querySelector('#current-path-full').innerHTML = '';
 
+    const sort = document.querySelector('#sort');
+
     $.ajax({
-        url: boxId ? '/api/open_box/' + boxId + '/' : '/api/open_root/',
+        url: boxId ? ('/api/open_box/' + boxId + '/?sort_by=' + sort.value) : ('/api/open_root/?sort_by=' + sort.value),
         dataType: 'json',
         success: response => {
             displayItems(response);
@@ -107,6 +114,7 @@ function fetchItems(boxId=null) {
             initContextMenu();
             initBreadcrumbs();
             initFavouriteButtons();
+            initSort();
         }
     });
 }

@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
+body {
+    overflow-y: scroll;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -177,6 +181,10 @@ div#main-panel {
                 border-bottom: 1px solid gray;
                 font-size: 1.2rem;
                 transition: all 0.3s ease;
+
+                &.box-row {
+                    background: rgb(248, 248, 203);
+                }
     
                 i {
                     margin-left: 2rem;
