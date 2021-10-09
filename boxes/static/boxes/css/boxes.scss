@@ -105,6 +105,61 @@ div#main-panel {
             display: none;
         }
 
+        div#search-panel {
+
+            div#search-input-and-spinner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+
+                div#search-results {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+
+                    div.search-result {
+                        padding: .3rem .5rem .3rem .5rem;
+                        width: 20rem;
+                        background: rgb(213, 186, 255);
+                        box-shadow: rgb(76, 38, 133) 5px 5px;
+                        color: white;
+                        border-bottom: 1px solid rgb(76, 38, 133);
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            cursor: pointer;
+                            background: rgb(232, 218, 255);
+                        }
+
+                        &:last-child {
+                            border-bottom-left-radius: 1rem;
+                            border-bottom-right-radius: 1rem;
+                        }
+
+                        p {
+                            margin: 0;
+
+                            i {
+                                font-size: 1.2rem;
+                                margin-right: .4rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            span#search-spinner {
+                i {
+                    margin-left: 1.5rem;
+                    font-size: 1.4rem;
+                    animation: spinning 1s ease infinite;
+                    color:rgb(189, 189, 189);
+                }
+            }
+
+        }
+
         input, select { 
             width: 20rem;
             background: rgb(213, 186, 255);
@@ -158,6 +213,7 @@ div#main-panel {
             color: rgb(167, 167, 167);
 
             i {
+
                 animation: spinning 1s ease infinite;
             }
         }

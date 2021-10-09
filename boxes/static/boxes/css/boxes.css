@@ -139,6 +139,64 @@ div#main-panel div#search-sort-panels.hidden {
   display: none;
 }
 
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner div#search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner div#search-results div.search-result {
+  padding: .3rem .5rem .3rem .5rem;
+  width: 20rem;
+  background: #d5baff;
+  -webkit-box-shadow: #4c2685 5px 5px;
+          box-shadow: #4c2685 5px 5px;
+  color: white;
+  border-bottom: 1px solid #4c2685;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner div#search-results div.search-result:hover {
+  cursor: pointer;
+  background: #e8daff;
+}
+
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner div#search-results div.search-result:last-child {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner div#search-results div.search-result p {
+  margin: 0;
+}
+
+div#main-panel div#search-sort-panels div#search-panel div#search-input-and-spinner div#search-results div.search-result p i {
+  font-size: 1.2rem;
+  margin-right: .4rem;
+}
+
+div#main-panel div#search-sort-panels div#search-panel span#search-spinner i {
+  margin-left: 1.5rem;
+  font-size: 1.4rem;
+  -webkit-animation: spinning 1s ease infinite;
+          animation: spinning 1s ease infinite;
+  color: #bdbdbd;
+}
+
 div#main-panel div#search-sort-panels input, div#main-panel div#search-sort-panels select {
   width: 20rem;
   background: #d5baff;

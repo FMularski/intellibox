@@ -47,7 +47,11 @@
             <hr>
             <div id="search-sort-panels">
                 <div id="search-panel">
-                    Search: <input type="text" class="form-control">
+                    <span>Search:</span> 
+                    <div id="search-input-and-spinner">
+                        <input id="search-input" type="text" class="form-control"><span id="search-spinner"></span>
+                        <div id="search-results"></div>
+                    </div>
                 </div>
                 <div id="sort-panel">
                     Sort:
@@ -117,4 +121,5 @@
     <script src="{% static '/boxes/js/manage-file-panel.js' %}"></script>
     <script src="{% static '/boxes/js/nav.js' %}"></script>
     <script src="{% static '/boxes/js/sort.js' %}"></script>
+    <script src="{% static '/boxes/js/search.js' %}"></script>
 {% endblock %}

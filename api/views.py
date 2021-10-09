@@ -1,9 +1,12 @@
-from django.http import Http404, JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from .serializers import BoxSerializer, FileSerializer
 from .models import Box, File, Item
+from .serializers import (
+    BoxSerializer, 
+    FileSerializer, 
+    SearchBoxSerializer, 
+    SearchFileSerializer
+)
 
 
 class OpenBoxView(APIView):
@@ -105,12 +108,12 @@ class MarkAsFavouriteView(APIView):
 class SearchView(APIView):
     def get(self, request, input):
         found_boxes = Box.objects.filter(owner=request.user, name__istartswith=input, is_deleted=False, parent_box__isnull=False)
-        found_boxes_serializer = BoxSerializer(found_boxes, many=True)
+        found_boxes_serializer = SearchBoxSerializer(found_boxes, many=True)
 
         found_files = File.objects.filter(owner=request.user, name__istartswith=input, is_deleted=False)
-        found_files_serializer = FileSerializer(found_files, many=True)
+        found_files_serializer = SearchFileSerializer(found_files, many=True)
 
         return Response({
-            'found_boxes': found_boxes_serializer.data,
-            'found_files': found_files_serializer.data
+            'foundBoxes': found_boxes_serializer.data,
+            'foundFiles': found_files_serializer.data
         })
