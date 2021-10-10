@@ -51,6 +51,7 @@ class File(Item):
     def save(self, *args, **kwargs):
         self.location = get_location(self)
         self.size = self.instance.size
+        self.name = self.instance.name
         self.category = set_category(extension=self.instance.name.split('.')[-1].lower())
         super(File, self).save(*args, **kwargs)
 

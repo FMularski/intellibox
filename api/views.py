@@ -144,4 +144,29 @@ class AddItemView(APIView):
             })
 
         if item_type == 'file':
-            pass
+            # get the files from formdata
+            uploaded_files = request.FILES.getlist('file')
+
+            # check if enough storage before saving
+            total_size = 0
+            for uploaded in uploaded_files:
+                total_size += uploaded.size
+
+            # if total_size > request.user.storage_left:
+            #     return Response({
+            #         'msg': 'Not enough space to upload file(s).'
+            #     })    
+        
+            # arroy for serializer            
+            saved_files = []
+            for uploaded in uploaded_files:
+                new_file = File(owner=request.user, parent_box=parent_box, instance=uploaded)
+                new_file.save()
+                saved_files.append(new_file)
+
+            saved_files_serializer = FileSerializer(saved_files, many=True)
+
+            return Response({
+                'items': saved_files_serializer.data,
+                'type': 'File'
+            })

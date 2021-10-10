@@ -41,10 +41,10 @@ const newFileInput = document.querySelector('#new-file-input');
 const newName = document.querySelector('div#new-name');
 
 selectInstance.addEventListener('change', event => {
-    if (event.target.value == 'Box') {
+    if (event.target.value == 'box') {
         newFileInput.classList.add('hidden');
         newName.classList.remove('hidden');
-    } else if (event.target.value == 'File') { 
+    } else if (event.target.value == 'file') { 
         newFileInput.classList.remove('hidden');
         newName.classList.add('hidden');
     }
