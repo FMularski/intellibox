@@ -89,22 +89,22 @@
     <div id="new-panel">
         <h2><span><i class="fas fa-plus"></i> New</span><i id="close-new-panel-btn" class="fas fa-times"></i></h2>
         <form id="add-new-form" enctype="multipart/form-data">
-            <label for="">Instance:</label>
+            <label for="">Select type:</label>
             <select name="" id="select-instance" class="form-control">
-                <option value="Box">Box</option>
-                <option value="File">File</option>
+                <option value="box">Box</option>
+                <option value="file">File</option>
             </select>
-            <label for="">Location:</label>
-            <p class="new-location">box1/box2/box3</p>
+            <label for="">Select box:</label>
+            <select name="" id="select-parent-box" class="form-control"></select>
 
             <div id="new-name">
                 <label for="">Name:</label>
-                <input type="text" class="form-control">
+                <input id="add-item-name" type="text" class="form-control">
             </div>
             
             <input id="new-file-input" class="hidden" type="file" multiple> <br>
             
-            <button class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i> upload</button>
+            <button id="upload-btn" class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i> upload</button>
         </form>
     </div>
 {% endblock %}
@@ -122,4 +122,5 @@
     <script src="{% static '/boxes/js/nav.js' %}"></script>
     <script src="{% static '/boxes/js/sort.js' %}"></script>
     <script src="{% static '/boxes/js/search.js' %}"></script>
+    <script src="{% static '/boxes/js/add-item.js' %}"></script>
 {% endblock %}

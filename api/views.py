@@ -9,6 +9,14 @@ from .serializers import (
 )
 
 
+class ParentBoxesListView(APIView):
+    def get(self, request):
+        parent_boxes = Box.objects.filter(owner=request.user, is_deleted=False).order_by('name')
+        parent_boxes_serializer = BoxSerializer(parent_boxes, many=True)
+
+        return Response(parent_boxes_serializer.data)
+
+
 class OpenBoxView(APIView):
     def get(self, request, pk):
         box = Box.objects.prefetch_related('inner_boxes', 'inner_files').get(pk=pk)
@@ -117,3 +125,20 @@ class SearchView(APIView):
             'foundBoxes': found_boxes_serializer.data,
             'foundFiles': found_files_serializer.data
         })
+
+
+class AddItemView(APIView):
+    def post(self, request, parent_box_id):
+        item_type = request.POST.get('type')
+        parent_box = Box.objects.get(pk=parent_box_id)
+
+        if item_type == 'box':
+            box_name = request.POST.get('name')
+            new_box = Box(owner=request.user, parent_box=parent_box, name=box_name)
+            new_box.save()
+
+            new_box_serializer = BoxSerializer(new_box)
+            return Response(new_box_serializer.data)
+
+        if item_type == 'file':
+            pass

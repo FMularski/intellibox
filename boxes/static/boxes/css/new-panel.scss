@@ -75,6 +75,10 @@ div#new-panel {
             margin: auto;
             margin-top: 2rem;
             width: 15rem;
+
+            i.fa-spinner {
+                animation: spinning 1s ease infinite;
+            }
         }
 
         input#new-file-input, div#new-name {
@@ -100,5 +104,13 @@ div#new-panel {
                 cursor: pointer;
             }
         }
+    }
+}
+
+@keyframes spinning {
+    from {
+        transform: rotateZ(0deg);
+    } to {
+        transform: rotateZ(360deg);
     }
 }

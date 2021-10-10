@@ -91,6 +91,11 @@ div#new-panel form button {
   width: 15rem;
 }
 
+div#new-panel form button i.fa-spinner {
+  -webkit-animation: spinning 1s ease infinite;
+          animation: spinning 1s ease infinite;
+}
+
 div#new-panel form input#new-file-input.hidden, div#new-panel form div#new-name.hidden {
   display: none;
 }
@@ -113,5 +118,27 @@ div#new-panel form input::-webkit-file-upload-button:hover, div#new-panel form i
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   cursor: pointer;
+}
+
+@-webkit-keyframes spinning {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spinning {
+  from {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+            transform: rotateZ(360deg);
+  }
 }
 /*# sourceMappingURL=new-panel.css.map */
