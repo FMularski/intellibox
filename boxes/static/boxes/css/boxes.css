@@ -66,6 +66,32 @@ header div#header-username i#logout-btn:hover {
           transform: scale(1.1);
 }
 
+div#flash-msg {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding: 1rem;
+  background: #00b400;
+  color: white;
+  border-radius: 1rem;
+  -webkit-box-shadow: #005300 0.5rem 0.5rem;
+          box-shadow: #005300 0.5rem 0.5rem;
+  width: 25rem;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+div#flash-msg p {
+  text-align: center;
+  margin: 0;
+}
+
+div#flash-msg.active {
+  top: 1rem;
+}
+
 main {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -11,6 +11,11 @@
 {% endblock %}
 
 {% block content %}
+    <div id="flash-msg" class="">
+        <p><i class="fas fa-check-square"></i> Success!</p>
+        <p id="flash-msg-text">Box abc has been created.</p>
+    </div>
+
     {% csrf_token %}
     <header>
         <div id="header-logo">

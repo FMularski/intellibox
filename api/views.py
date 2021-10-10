@@ -138,7 +138,10 @@ class AddItemView(APIView):
             new_box.save()
 
             new_box_serializer = BoxSerializer(new_box)
-            return Response(new_box_serializer.data)
+            return Response({
+                'item': new_box_serializer.data,
+                'type': 'Box'
+            })
 
         if item_type == 'file':
             pass

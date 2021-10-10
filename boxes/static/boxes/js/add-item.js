@@ -4,6 +4,7 @@ function addItem() {
     const name = document.querySelector('#add-item-name');
     const token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
     const uploadBtn = document.querySelector('#upload-btn');
+    const flashMsg = document.querySelector('#flash-msg');
 
     uploadBtn.innerHTML = '<i class="fas fa-spinner"></i>';
 
@@ -25,6 +26,11 @@ function addItem() {
             fetchItems(parentBox);
             // clear name field for the next usage
             name.value = '';
+            // show flash msg
+            flashMsg.classList.add('active');
+            document.querySelector('#flash-msg-text').innerText = `${response.type} '${response.item.name}' has been created.`;
+            setTimeout(() => flashMsg.classList.remove('active'), 3000);
+
         }
     })
 }
