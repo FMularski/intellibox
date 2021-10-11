@@ -74,7 +74,7 @@
                 <i id="manage-file-download" class="fas fa-cloud-download-alt"></i>
                 <i id="manage-file-rename" class="fas fa-edit"></i>
                 <i id="manage-file-move" class="fas fa-arrows-alt"></i>
-                <i id="manage-file-remove" class="fas fa-times"></i>
+                <i id="manage-file-remove" class="fas fa-trash"></i>
             </div>
             <div id="box-content"></div>
         </div>
@@ -112,6 +112,10 @@
             
             <button id="upload-btn" class="btn btn-primary"><i class="fas fa-arrow-circle-up"></i> Upload</button>
         </form>
+    </div>
+    <div id="removing-panel" class="hidden">
+        <i class="fas fa-spinner"></i>
+        <p>Removing <span id="removing-item-name">item</span>...</p>
     </div>
 {% endblock %}
 

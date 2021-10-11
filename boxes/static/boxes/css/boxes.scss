@@ -348,6 +348,44 @@ div#main-panel {
     }
 }
 
+div#removing-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 1rem;
+    background: rgb(213, 186, 255);
+    box-shadow: rgb(76, 38, 133) 5px 5px;
+    color: white;
+    z-index: 5;
+    transition: all .3s ease;
+    opacity: 0;
+    pointer-events: none;
+
+    i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: spinning 1s ease infinite;
+    }
+
+    p {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
 @keyframes spinning {
     from {
         transform: rotateZ(0deg);

@@ -170,3 +170,20 @@ class AddItemView(APIView):
                 'items': saved_files_serializer.data,
                 'type': 'File'
             })
+
+
+class RemoveItemView(APIView):
+    def post(self, request, pk):
+        '''
+            cannot do Item.objects.get as Item model does not have parent_model field
+            so firstly look for box with matching id and then file 
+        '''
+        try:
+            item = Box.objects.get(pk=pk)
+        except Box.DoesNotExist:
+            item = File.objects.get(pk=pk)
+
+        parent_box = item.parent_box
+        item.delete()
+
+        return Response({'parentBoxId': parent_box.id})

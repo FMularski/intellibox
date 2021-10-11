@@ -13,4 +13,5 @@ urlpatterns = [
     path('mark_as_favourite/<int:pk>/', views.MarkAsFavouriteView.as_view(), name='mark_as_favourite'),
     path('search/<str:input>/', views.SearchView.as_view(), name='search'),
     path('add-item/<int:parent_box_id>/', views.AddItemView.as_view(), name='add_item'),
+    path('remove-item/<int:pk>/', views.RemoveItemView.as_view(), name='remove'),
 ]
