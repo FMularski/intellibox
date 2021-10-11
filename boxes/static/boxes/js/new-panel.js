@@ -39,6 +39,7 @@ closeBtn.addEventListener('click', () => {
     document.querySelector('#add-item-name').value = '';
     document.querySelector('#new-file-input').value = '';
     filesList.innerHTML = '';
+    document.querySelector('#upload-btn').innerHTML = '<i class="fas fa-arrow-circle-up"></i> Upload';
 });
 
 

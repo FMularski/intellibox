@@ -34,7 +34,7 @@ div#new-panel {
 }
 
 div#new-panel.active {
-  top: 10%;
+  top: 3rem;
   z-index: 2;
 }
 
