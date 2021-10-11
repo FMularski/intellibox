@@ -2,6 +2,9 @@ const dark = document.querySelector('#dark');
 const newPanel = document.querySelector('#new-panel');
 const closeBtn = document.querySelector('#close-new-panel-btn');
 const newBtn = document.querySelector('.new-btn');
+const fileInput = document.querySelector('#new-file-input');
+const filesList = document.querySelector('#uploaded-files-list');
+
 
 function loadParentBoxes() {
     const parentBoxSelect = document.querySelector('#select-parent-box');
@@ -32,6 +35,10 @@ newBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     dark.classList.remove('active');
     newPanel.classList.remove('active');
+    // clear inputs
+    document.querySelector('#add-item-name').value = '';
+    document.querySelector('#new-file-input').value = '';
+    filesList.innerHTML = '';
 });
 
 
@@ -43,9 +50,21 @@ const newName = document.querySelector('div#new-name');
 selectInstance.addEventListener('change', event => {
     if (event.target.value == 'box') {
         newFileInput.classList.add('hidden');
+        filesList.classList.add('hidden');
         newName.classList.remove('hidden');
     } else if (event.target.value == 'file') { 
         newFileInput.classList.remove('hidden');
+        filesList.classList.remove('hidden');
         newName.classList.add('hidden');
     }
 });
+
+
+fileInput.addEventListener('change', event => {
+
+    filesList.innerHTML = '';
+
+    for (let i = 0; i < fileInput.files.length; i++){
+        filesList.innerHTML += '<li><i class="far fa-file"></i> ' + fileInput.files.item(i).name + '</li>';
+    }
+})

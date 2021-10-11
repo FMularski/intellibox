@@ -43,10 +43,10 @@ function addItem() {
             // show flash msg
             flashMsg.classList.add('active');
 
-            // box 
+            // message for box 
             if (response.item)
                 document.querySelector('#flash-msg-text').innerText = `${response.type} ${response.item.name} uploaded.`;
-            // file(s)
+            // message for file(s)
             if (response.items)
                 document.querySelector('#flash-msg-text').innerText = `${response.type}(s) uploaded.`;
             
