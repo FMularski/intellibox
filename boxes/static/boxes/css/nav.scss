@@ -60,10 +60,11 @@ nav {
         border-radius: 3px;
         
         div.storage-bar {
+            transition: all 1s ease;
             border-radius: 3px;
             background: $main-theme-color;
             height: 7px;
-            width: 50%; // width = occupied_storage / storage_limit
+            width: 0%; // width = occupied_storage / storage_limit
         }
     }
 

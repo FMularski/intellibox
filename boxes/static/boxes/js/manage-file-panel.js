@@ -54,6 +54,7 @@ function removePanel() {
             fetchItems(response.parentBoxId);
             dark.classList.remove('active');
             removingPanel.classList.remove('active');
+            updateStorage();
         }
     })
 }

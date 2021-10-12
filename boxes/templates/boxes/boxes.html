@@ -41,8 +41,8 @@
                     <div class="storage-bar"></div>
                 </div>
                 <p class="storage-occupied-data"> 
-                    <span class="storage-occupied-number">8.65</span> GB of 
-                    <span class="storage-limitnumber">15</span> GB used
+                    <span class="storage-used-number">0 bytes</span> of 
+                    <span class="storage-limit-number">2 GB</span> used
                 </p>
             </div>
         </nav>
@@ -121,6 +121,7 @@
 
 {% block script %}
     <script src="{% static '/boxes/js/logout.js' %}"></script>
+    <script src="{% static '/boxes/js/storage.js' %}"></script>
     <script src="{% static '/boxes/js/clicking-items.js' %}"></script>
     <script src="{% static '/boxes/js/context-menu.js' %}"></script>
     <script src="{% static '/boxes/js/new-panel.js' %}"></script>

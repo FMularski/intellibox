@@ -3,7 +3,8 @@ from . import views
 
 
 urlpatterns = [
-    path('parent_boxes/', views.ParentBoxesListView.as_view(), name='boxes'),
+    path('storage/', views.StorageView.as_view(), name='storage'),
+    path('parent_boxes/', views.ParentBoxesListView.as_view(), name='parent_boxes'),
     path('open_box/<int:pk>/', views.OpenBoxView.as_view(), name='open_box'),
     path('open_root/', views.OpenRootBoxView.as_view(), name='open_root'),
     path('preview_file/<int:pk>/', views.PreviewFileView.as_view(), name='preview_file'),

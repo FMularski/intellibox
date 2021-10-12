@@ -10,6 +10,7 @@ function addItem() {
     const fileInput = document.querySelector('#new-file-input');
 
     uploadBtn.innerHTML = '<i class="fas fa-spinner"></i>';
+    uploadBtn.style.pointerEvents = 'none';
 
     const formData = new FormData();
     formData.append('type', itemType);
@@ -33,6 +34,7 @@ function addItem() {
             
             // refresh button
             uploadBtn.innerHTML = '<i class="fas fa-arrow-circle-up"></i> upload';
+            uploadBtn.style.pointerEvents = 'all';
             // close add panel
             document.querySelector('#close-new-panel-btn').click();
             // open parent box
@@ -52,6 +54,9 @@ function addItem() {
             
             
             setTimeout(() => flashMsg.classList.remove('active'), 3000);
+
+            // update used storage info
+            updateStorage();
         },
         contentType: false,
         processData: false,

@@ -55,10 +55,12 @@ nav div.storage-bar-bg {
 }
 
 nav div.storage-bar-bg div.storage-bar {
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
   border-radius: 3px;
   background: #7952b3;
   height: 7px;
-  width: 50%;
+  width: 0%;
 }
 
 nav p.storage-occupied-data {

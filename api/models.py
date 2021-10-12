@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_delete
+from django.db.models.signals import post_save, pre_delete, post_delete
 
 
 User = get_user_model()
@@ -85,14 +85,18 @@ def item_post_save_handler(instance, created, **kwargs):
     #     instance.parent_box.save()
 
 
-@receiver(pre_delete, sender=Box)
-@receiver(pre_delete, sender=File)
-def item_pre_delete_handler(instance, **kwargs):
+@receiver(post_delete, sender=Box)
+@receiver(post_delete, sender=File)
+def item_post_delete_handler(instance, **kwargs):
     if instance.parent_box:
 
+        # if file model delete instance of a file
+        if instance.instance:
+            instance.instance.delete(save=False)
         # keep track of files number in the box and update the size field 
         instance.parent_box.files_count -= 1
         instance.parent_box.save()
+
 
 
 def get_location(item):

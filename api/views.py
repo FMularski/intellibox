@@ -9,6 +9,18 @@ from .serializers import (
 )
 
 
+class StorageView(APIView):
+    def get(self, request):
+        storage_used = request.user.storage_used
+        storage_limit = request.user.storage_limit
+
+        return Response({
+            'storageUsed': storage_used,
+            'storageLimit': storage_limit,
+            'storagePercentage': storage_used / storage_limit
+        })
+
+
 class ParentBoxesListView(APIView):
     def get(self, request):
         parent_boxes = Box.objects.filter(owner=request.user, is_deleted=False).order_by('name')
@@ -152,10 +164,14 @@ class AddItemView(APIView):
             for uploaded in uploaded_files:
                 total_size += uploaded.size
 
-            # if total_size > request.user.storage_left:
-            #     return Response({
-            #         'msg': 'Not enough space to upload file(s).'
-            #     })    
+            if total_size > (request.user.storage_limit - request.user.storage_used):
+                raise Exception('Not enough space.')
+                # return Response({
+                #     'msg': 'Not enough space to upload file(s).'
+                # })    
+
+            request.user.storage_used += total_size
+            request.user.save()
         
             # arroy for serializer            
             saved_files = []
@@ -184,6 +200,11 @@ class RemoveItemView(APIView):
             item = File.objects.get(pk=pk)
 
         parent_box = item.parent_box
+        
+        # restore used storage 
+        request.user.storage_used -= item.size
+        request.user.save()
+        
         item.delete()
 
         return Response({'parentBoxId': parent_box.id})
