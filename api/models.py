@@ -41,7 +41,7 @@ class Box(Item):
 
 class File(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, related_name='inner_files')
-    instance = models.FileField()
+    instance = models.FileField(upload_to='uploads')
     category = models.CharField(max_length=16, blank=True)
 
 
