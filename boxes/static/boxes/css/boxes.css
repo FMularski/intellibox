@@ -401,7 +401,7 @@ div#main-panel div#box-content div#no-preview p {
   text-align: center;
 }
 
-div#removing-panel {
+div#removing-panel, div#getting-link-panel {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -435,19 +435,22 @@ div#removing-panel {
   pointer-events: none;
 }
 
-div#removing-panel i {
+div#removing-panel i, div#getting-link-panel i {
   font-size: 4rem;
   margin-bottom: 1rem;
+}
+
+div#removing-panel i.fa-spinner, div#getting-link-panel i.fa-spinner {
   -webkit-animation: spinning 1s ease infinite;
           animation: spinning 1s ease infinite;
 }
 
-div#removing-panel p {
+div#removing-panel p, div#getting-link-panel p {
   font-size: 1.2rem;
   text-align: center;
 }
 
-div#removing-panel.active {
+div#removing-panel.active, div#getting-link-panel.active {
   opacity: 1;
   pointer-events: all;
 }

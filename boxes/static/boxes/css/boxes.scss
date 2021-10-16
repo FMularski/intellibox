@@ -348,7 +348,7 @@ div#main-panel {
     }
 }
 
-div#removing-panel {
+div#removing-panel, div#getting-link-panel {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -372,9 +372,13 @@ div#removing-panel {
     i {
         font-size: 4rem;
         margin-bottom: 1rem;
-        animation: spinning 1s ease infinite;
-    }
 
+        &.fa-spinner {
+            animation: spinning 1s ease infinite;
+
+        }
+    }
+    
     p {
         font-size: 1.2rem;
         text-align: center;

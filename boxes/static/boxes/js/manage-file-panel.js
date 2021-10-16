@@ -5,6 +5,7 @@ function initManageFilePanel(fileId) {
     // manage file panel buttons
     const favBtn = document.querySelector('#manage-file-favourite');
     const removeBtn = document.querySelector('#manage-file-remove');
+    const getLink = document.querySelector('#manage-file-get-link');
 
     // refresh callbacks by removing them and setting again
     favBtn.removeEventListener('click', markAsFavouritePanel);
@@ -12,6 +13,9 @@ function initManageFilePanel(fileId) {
 
     removeBtn.removeEventListener('click', removePanel);
     removeBtn.addEventListener('click', removePanel);
+
+    getLink.removeEventListener('click', getLinkPanel);
+    getLink.addEventListener('click', getLinkPanel);
 }
 
 // manage file panel functions
@@ -55,6 +59,36 @@ function removePanel() {
             dark.classList.remove('active');
             removingPanel.classList.remove('active');
             updateStorage();
+        }
+    })
+}
+
+function getLinkPanel() {
+    const manageFilePanel = document.querySelector('#manage-file-panel');
+    const fileId = manageFilePanel.getAttribute('file-id');
+    const gettingLinkPanel = document.querySelector('#getting-link-panel');
+    const getLinkBtn = document.querySelector('#manage-file-get-link');
+    const dark = document.querySelector('#dark');
+
+    gettingLinkPanel.innerHTML = '<i class="fas fa-spinner"></i>';
+    gettingLinkPanel.classList.add('active');
+    dark.classList.add('active');
+    getLinkBtn.style.pointerEvents = 'none';
+
+    $.ajax({
+        url: '/api/get-link/' + fileId + '/',
+        dataType: 'json',
+        success: response => {
+            navigator.clipboard.writeText(response);
+            gettingLinkPanel.innerHTML = 
+                '<i class="fas fa-check-circle"></i>' +
+                '<p>URL copied!</p>';
+
+            setTimeout(() => {
+                gettingLinkPanel.classList.remove('active');
+                dark.classList.remove('active');
+                getLinkBtn.style.pointerEvents = 'all';
+            }, 1000);
         }
     })
 }

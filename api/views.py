@@ -208,3 +208,9 @@ class RemoveItemView(APIView):
         item.delete()
 
         return Response({'parentBoxId': parent_box.id})
+
+
+class GetItemLinkView(APIView):
+    def get(self, request, pk):
+        file = File.objects.get(pk=pk)
+        return Response(file.instance.url)

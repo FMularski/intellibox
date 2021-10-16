@@ -12,6 +12,7 @@ urlpatterns = [
     path('recent/', views.RecentView.as_view(), name='recent'),
     path('bin/', views.BinView.as_view(), name='bin'),
     path('mark_as_favourite/<int:pk>/', views.MarkAsFavouriteView.as_view(), name='mark_as_favourite'),
+    path('get-link/<int:pk>/', views.GetItemLinkView.as_view(), name='get_link'),
     path('search/<str:input>/', views.SearchView.as_view(), name='search'),
     path('add-item/<int:parent_box_id>/', views.AddItemView.as_view(), name='add_item'),
     path('remove-item/<int:pk>/', views.RemoveItemView.as_view(), name='remove'),
