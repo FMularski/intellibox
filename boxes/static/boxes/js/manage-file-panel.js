@@ -6,6 +6,7 @@ function initManageFilePanel(fileId) {
     const favBtn = document.querySelector('#manage-file-favourite');
     const removeBtn = document.querySelector('#manage-file-remove');
     const getLink = document.querySelector('#manage-file-get-link');
+    const moveBtn = document.querySelector('#manage-file-move');
 
     // refresh callbacks by removing them and setting again
     favBtn.removeEventListener('click', markAsFavouritePanel);
@@ -16,6 +17,9 @@ function initManageFilePanel(fileId) {
 
     getLink.removeEventListener('click', getLinkPanel);
     getLink.addEventListener('click', getLinkPanel);
+
+    moveBtn.removeEventListener('click', moveItemPanel);
+    moveBtn.addEventListener('click', moveItemPanel);
 }
 
 // manage file panel functions
@@ -92,3 +96,41 @@ function getLinkPanel() {
         }
     })
 }
+
+function moveItemPanel() {
+    const moveToPanel = document.querySelector('#move-to-panel');
+    const dark = document.querySelector('#dark');
+    const selectInput = document.querySelector('#new-parent-select');
+    const confirmMoveBtn = document.querySelector('#confirm-move-btn');
+    const manageFilePanel = document.querySelector('#manage-file-panel');
+    const idToMove = manageFilePanel.getAttribute('file-id');
+    
+    confirmMoveBtn.setAttribute('moving-item-id', idToMove);
+    
+    selectInput.innerHTML = '<option> Loading boxes... </option>';
+
+    $.ajax({
+        url: '/api/parent_boxes/',
+        dataType: 'json',
+        success: response => {
+            selectInput.innerHTML = '';
+            response.forEach(box => {
+                selectInput.innerHTML += 
+                    '<option value="' + box.id + '">' + box.location + box.name + '</option>';
+            });
+        }
+    })
+
+    moveToPanel.classList.add('active');
+    dark.classList.add('active');
+}
+
+const closeMoveBtn = document.querySelector('#close-move-btn');
+
+closeMoveBtn.addEventListener('click', () => {
+    const moveToPanel = document.querySelector('#move-to-panel');
+    const dark = document.querySelector('#dark');
+
+    moveToPanel.classList.remove('active');
+    dark.classList.remove('active');
+})

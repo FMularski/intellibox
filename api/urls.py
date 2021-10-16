@@ -16,4 +16,5 @@ urlpatterns = [
     path('search/<str:input>/', views.SearchView.as_view(), name='search'),
     path('add-item/<int:parent_box_id>/', views.AddItemView.as_view(), name='add_item'),
     path('remove-item/<int:pk>/', views.RemoveItemView.as_view(), name='remove'),
+    path('move-item/<int:pk>/<int:parent_pk>/', views.MoveItemView.as_view(), name='move_item'),
 ]

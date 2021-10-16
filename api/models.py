@@ -16,6 +16,9 @@ class Item(models.Model):
     is_deleted = models.BooleanField(default=False)
     size = models.BigIntegerField(blank=True, default=0)
 
+    def __str__(self):
+        return self.name
+
 
 class Box(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, null=True, blank=True, related_name='inner_boxes')

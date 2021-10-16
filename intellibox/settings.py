@@ -28,7 +28,7 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'intellibox.herokuapp.com']
 
@@ -156,7 +156,7 @@ EMAIL_HOST_PASSWORD = env('EMAIL_APP_PASSWORD')
 EMAIL_USE_TLS = True
 
 
-S3_ENABLED = True
+S3_ENABLED = False
 
 if S3_ENABLED:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

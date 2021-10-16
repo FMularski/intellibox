@@ -214,3 +214,21 @@ class GetItemLinkView(APIView):
     def get(self, request, pk):
         file = File.objects.get(pk=pk)
         return Response(file.instance.url)
+
+
+class MoveItemView(APIView):
+    def post(self, request, pk, parent_pk):
+        try:
+            item = Box.objects.get(pk=pk)
+        except Box.DoesNotExist:
+            item = File.objects.get(pk=pk)
+
+        old_parent = item.parent_box
+        new_parent = Box.objects.get(pk=parent_pk)
+
+        item.parent_box = new_parent
+        
+        item.save()
+        old_parent.save()
+
+        return Response({'newParentId': new_parent.id})

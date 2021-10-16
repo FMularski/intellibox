@@ -348,7 +348,7 @@ div#main-panel {
     }
 }
 
-div#removing-panel, div#getting-link-panel {
+div#removing-panel, div#getting-link-panel, div#move-to-panel {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -388,6 +388,46 @@ div#removing-panel, div#getting-link-panel {
         opacity: 1;
         pointer-events: all;
     }
+}
+
+div#move-to-panel {
+    width: 40rem;
+    height: auto;
+
+    i#close-move-btn {
+        font-size: 2rem;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+
+    form {
+        width: 80%;
+        margin: auto;
+
+        select:hover {
+            cursor: pointer;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 1.2rem;
+            width: 10rem;
+
+            i {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+
 }
 
 @keyframes spinning {

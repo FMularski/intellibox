@@ -401,7 +401,7 @@ div#main-panel div#box-content div#no-preview p {
   text-align: center;
 }
 
-div#removing-panel, div#getting-link-panel {
+div#removing-panel, div#getting-link-panel, div#move-to-panel {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -435,24 +435,65 @@ div#removing-panel, div#getting-link-panel {
   pointer-events: none;
 }
 
-div#removing-panel i, div#getting-link-panel i {
+div#removing-panel i, div#getting-link-panel i, div#move-to-panel i {
   font-size: 4rem;
   margin-bottom: 1rem;
 }
 
-div#removing-panel i.fa-spinner, div#getting-link-panel i.fa-spinner {
+div#removing-panel i.fa-spinner, div#getting-link-panel i.fa-spinner, div#move-to-panel i.fa-spinner {
   -webkit-animation: spinning 1s ease infinite;
           animation: spinning 1s ease infinite;
 }
 
-div#removing-panel p, div#getting-link-panel p {
+div#removing-panel p, div#getting-link-panel p, div#move-to-panel p {
   font-size: 1.2rem;
   text-align: center;
 }
 
-div#removing-panel.active, div#getting-link-panel.active {
+div#removing-panel.active, div#getting-link-panel.active, div#move-to-panel.active {
   opacity: 1;
   pointer-events: all;
+}
+
+div#move-to-panel {
+  width: 40rem;
+  height: auto;
+}
+
+div#move-to-panel i#close-move-btn {
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+div#move-to-panel i#close-move-btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+div#move-to-panel form {
+  width: 80%;
+  margin: auto;
+}
+
+div#move-to-panel form select:hover {
+  cursor: pointer;
+}
+
+div#move-to-panel form button {
+  display: block;
+  margin: auto;
+  margin-top: 1.2rem;
+  width: 10rem;
+}
+
+div#move-to-panel form button i {
+  font-size: 1.2rem;
+  margin-bottom: 0;
 }
 
 @-webkit-keyframes spinning {
