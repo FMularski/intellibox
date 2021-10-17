@@ -22,7 +22,7 @@ class Item(models.Model):
 
 class Box(Item):
     parent_box = models.ForeignKey('Box', on_delete=models.CASCADE, null=True, blank=True, related_name='inner_boxes')
-    files_count = models.PositiveIntegerField(default=0)
+    files_count = models.IntegerField(default=0)
 
     def __str__(self):
         return f'[Box] {self.name}'
@@ -52,9 +52,11 @@ class File(Item):
         return f'[File] {self.name}'
 
     def save(self, *args, **kwargs):
-        self.location = get_location(self)
+        if not self.name:
+            self.name = self.instance.name
+
         self.size = self.instance.size
-        self.name = self.instance.name
+        self.location = get_location(self)
         self.category = set_category(extension=self.instance.name.split('.')[-1].lower())
         super(File, self).save(*args, **kwargs)
 
@@ -83,22 +85,20 @@ def item_post_save_handler(instance, created, **kwargs):
         instance.parent_box.save()
 
 
-    # if created and instance.parent_box: 
-    #     instance.parent_box.files_count += 1
-    #     instance.parent_box.save()
-
-
 @receiver(post_delete, sender=Box)
-@receiver(post_delete, sender=File)
-def item_post_delete_handler(instance, **kwargs):
+def box_post_delete_handler(instance, **kwargs):
     if instance.parent_box:
-
-        # if file model delete instance of a file
-        if instance.instance:
-            instance.instance.delete(save=False)
         # keep track of files number in the box and update the size field 
         instance.parent_box.files_count -= 1
         instance.parent_box.save()
+
+
+@receiver(post_delete, sender=File)
+def file_post_delete_handler(instance, **kwargs):
+    instance.instance.delete(save=False)
+    # keep track of files number in the box and update the size field 
+    instance.parent_box.files_count -= 1
+    instance.parent_box.save()
 
 
 
