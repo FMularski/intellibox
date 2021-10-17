@@ -1,4 +1,4 @@
-function initManageFilePanel(fileId) {
+function initManageFilePanel(fileId, fileUrl) {
     const manageFilePanel = document.querySelector('#manage-file-panel');
     manageFilePanel.setAttribute('file-id', fileId);
 
@@ -7,6 +7,9 @@ function initManageFilePanel(fileId) {
     const removeBtn = document.querySelector('#manage-file-remove');
     const getLink = document.querySelector('#manage-file-get-link');
     const moveBtn = document.querySelector('#manage-file-move');
+    const fileDownloadLink = document.querySelector('#file-download-link');
+
+    fileDownloadLink.setAttribute('href', fileUrl);
 
     // refresh callbacks by removing them and setting again
     favBtn.removeEventListener('click', markAsFavouritePanel);

@@ -11,7 +11,7 @@ function fetchFile(fileId) {
         success: response => {
             displayItem(response);
             initBreadcrumbs();
-            initManageFilePanel(fileId);
+            initManageFilePanel(fileId, response.instance);
         }
     });
 }
