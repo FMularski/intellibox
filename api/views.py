@@ -169,17 +169,16 @@ class AddItemView(APIView):
                 # return Response({
                 #     'msg': 'Not enough space to upload file(s).'
                 # })    
-
-            request.user.storage_used += total_size
-            request.user.save()
-        
+            
             # arroy for serializer            
             saved_files = []
             for uploaded in uploaded_files:
                 new_file = File(owner=request.user, parent_box=parent_box, instance=uploaded)
                 new_file.save()
                 saved_files.append(new_file)
+                request.user.storage_used += uploaded.size
 
+            request.user.save()
             saved_files_serializer = FileSerializer(saved_files, many=True)
 
             return Response({
@@ -200,12 +199,12 @@ class RemoveItemView(APIView):
             item = File.objects.get(pk=pk)
 
         parent_box = item.parent_box
-        
-        # restore used storage 
-        request.user.storage_used -= item.size
-        request.user.save()
+        item_size = item.size
         
         item.delete()
+        # restore used storage 
+        request.user.storage_used -= item_size
+        request.user.save()
 
         return Response({'parentBoxId': parent_box.id})
 
