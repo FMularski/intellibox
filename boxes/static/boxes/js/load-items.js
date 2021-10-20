@@ -72,7 +72,8 @@ function displayItems(response) {
 
     response.innerBoxes.concat(response.innerFiles).forEach(item => {
         rows += 
-            '<tr class="box-item ' + (item.instance ? '' : 'box-row') + '" item-id="' + item.id + '" item-type="' + (item.instance ? 'file' : 'box') + '">' + 
+            '<tr class="box-item ' + (item.instance ? '' : 'box-row') + '" item-id="' + item.id + '" item-type="' + 
+                (item.instance ? 'file' : 'box') + '" item-name="' + item.name + '" item-url="' + (item.instance ? item.instance : '') + '">' + 
                 '<td><i class="' + (item.is_favourite ? 'fas' : 'far') + ' fa-star fav-btn" item-id="' + item.id + '"></i></td>' +
                 '<td>' + 
                     (item.instance ? assignFileIcon(item.category) : '<i class="fas fa-archive" style="color: brown;"></i>') +  

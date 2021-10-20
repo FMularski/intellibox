@@ -71,7 +71,7 @@
             <div id="manage-file-panel" class="hidden">
                 <i id="manage-file-favourite" class="far fa-star"></i>
                 <i id="manage-file-get-link" class="fas fa-link"></i>
-                <a id="file-download-link" href="">
+                <a id="file-download-link" href="" target="_blank">
                     <i id="manage-file-download" class="fas fa-cloud-download-alt"></i>
                 </a>
                 <i id="manage-file-move" class="fas fa-arrows-alt"></i>
@@ -82,13 +82,15 @@
     </main>
 
     <div id="context-menu">
-        <p class="context-menu-item"><i class="fas fa-search"></i> Preview</p>
-        <p class="context-menu-item"><i class="fas fa-cloud-download-alt"></i> Download</p>
-        <p class="context-menu-item"><i class="fas fa-edit"></i> Rename</p>
-        <p class="context-menu-item"><i class="fas fa-times"></i> Remove</p>
-        <p class="context-menu-item"><i class="fas fa-arrows-alt"></i> Move</p>
-        <p class="context-menu-item"><i class="fas fa-star"></i> Mark as favourite</p>
-        <p class="context-menu-item"><i class="fas fa-link"></i> Get link</p>
+        <p class="context-menu-header"><i class="fas fa-cogs"></i> item name</p>
+        <p id="context-preview" class="context-menu-item"><i class="fas fa-search"></i> Preview</p>
+        <p id="context-download" class="context-menu-item">
+            <a href="" target="_blank"><i class="fas fa-cloud-download-alt"></i> Download</a>
+        </p>
+        <p id="context-remove" class="context-menu-item"><i class="fas fa-times"></i> Remove</p>
+        <p id="context-move" class="context-menu-item"><i class="fas fa-arrows-alt"></i> Move</p>
+        <p id="context-fav" class="context-menu-item"><i class="fas fa-star"></i> Mark as favourite</p>
+        <p id="context-link" class="context-menu-item"><i class="fas fa-link"></i> Get link</p>
     </div>
 
     <div id="dark"></div>
